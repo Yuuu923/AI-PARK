@@ -71,9 +71,8 @@
     <p style="height: 80px;"></p>
     <h3 class="topic">使用AI會犯法？</h3>
     <div id="step1" class="step">
-        <video id="video1" controls>
-            <source src="../video/Ch3.1.1.mp4" type="video/mp4"></video>
-        <button id="next1" disabled>下一步</button>
+        <iframe width=100% src="https://youtu.be/WKq89TlLvzM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <button id="next1">下一步</button>
     </div>
     
 
@@ -160,10 +159,6 @@
         document.getElementById("step1").style.display = "block";
         var unlockedStep = 1; // 跟踪用户解锁到的步骤，一開始設置為 1，表示第一個步驟已解鎖。
 
-        // 當影片結束時，啟用下一步按鈕。
-        document.getElementById("video1").onended = function() {
-            document.getElementById("next1").disabled = false;
-        };
 
         // 將用戶從一個步驟移動到下一個步驟。它接受兩個參數：當前步驟的 ID 和下一步驟的 ID。它會隱藏當前步驟，顯示下一步驟，同時更新進度條。
         function nextStep(currentStep, nextStep) {
