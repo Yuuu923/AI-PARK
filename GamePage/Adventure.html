@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+    <title>AI PARK</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="icon" href="image/logo_AI.ico" type="image/x-icon">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="script.js"></script>
+
+<style>
+    .GamePlay_Content {
+        display: flex;
+        justify-content: center; /* 水平居中 */
+        align-items: center; /* 垂直居中，如果只需要水平居中，可以省略 */
+        height: 80vh; /* 设置高度为视口高度，根据需要调整 */
+    }
+    .GamePlay h2{
+        font-size: 40px;
+        color: #8233f0;
+        margin-left: 100px;
+    }
+    .GamePlay p{
+        font-size: 20px;
+        margin-left: 100px;
+    }
+
+
+    .GamePlay iframe {
+        width: 80%; /* 根据需要调整宽度 */
+        height: 600px; /* 根据需要调整高度 */
+        border: none;
+    }
+</style>
+
+</head>
+
+<body>
+    <header>
+        <button class="menu" onclick="ClickNav()">&#9776;</button>
+        <a href="../Home.html"><h1>AI PARK</h1></a>
+            <nav class="nav-bar" id="nav-bar">
+                <ul>
+                    <li><a href="../LearningList.html">學習園</a></li>
+                    <li><a href="../Playground.html">遊戲場</a></li>
+                    <li><a href="../References.html">參考網站</a></li>
+                    <div id="pagination"></div>
+                </ul>
+            </nav>
+    </header>
+
+    <p style="height: 90px;"> </p>
+
+    <div class="GamePlay">
+        <h2>AI機器學習大冒險</h2>
+        <p>玩法：滑鼠控制點擊</p>
+        <div class="GamePlay_Content">
+            <iframe title="AI機器學習大冒險" frameborder="0" src="https://view.genial.ly/66012bbcea93c600135b4698" type="text/html" allowscriptaccess="always" allowfullscreen="true" scrolling="yes" allownetworking="all"></iframe>
+            <!-- <iframe src="https://wordwall.net/tc/embed/5fdedb3ac1b344bfa0aef54c1da18a6d?themeId=46&templateId=25&fontStackId=0" frameborder="0" allowfullscreen></iframe> -->
+            <!-- <iframe style="max-width:100%" src="https://wordwall.net/tc/embed/5fdedb3ac1b344bfa0aef54c1da18a6d?themeId=46&templateId=25&fontStackId=0" width="500" height="380" frameborder="0" allowfullscreen></iframe> -->
+        </div>
+
+    </div>
+    
+</body>
+</html>

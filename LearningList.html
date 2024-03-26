@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+    <title>AI PARK</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="image/logo_AI.ico" type="image/x-icon">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="script.js"></script>
+    <style>
+body {
+    background-image: url('image/背景2.png'); /* 替换为你的背景图片的实际路径 */
+    background-size: cover; /* 确保背景图片覆盖整个页面 */
+    background-position: center; /* 背景图片居中显示 */
+    background-attachment: fixed; /* 背景图片固定，不随页面滚动 */
+}
+
+        #bookshelf {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 20px;
+        }
+        .book {
+            width: 300px;
+            height: 150px;
+            /* background-color: aqua; */
+            text-align: center;
+            line-height: 120px;
+            cursor: pointer;
+            transition: transform 0.5s;
+        }
+        
+        .book img {
+            width: 100%; /* 使图片宽度填满容器 */
+            height: auto; /* 保持图片的原始宽高比 */
+            display: block; /* 避免图片底部出现空白 */
+        }
+        
+        #contentDisplay {
+            width: 60%;
+            margin: 30px auto;
+            transition: opacity 1.5s;
+        }
+        
+        .content-section {
+            background-image: url("image/背景.png");
+            background-size: contain; /* 确保图片完整显示 */
+            background-repeat: no-repeat; /* 避免背景图片重复 */
+            min-height: 490px; 
+            display: none; /* 保证内容区块初始不显示且不占空间 */
+            flex-wrap: wrap; /* 允许内容换行 */
+            justify-content: space-evenly; /* 在主轴上分散对齐子元素 */
+            
+            opacity: 0; /* 开始时不可见 */
+            transition: opacity 1.5s ease-in-out; /* 透明度变化动画 */
+            width: 100%;
+        }
+        
+        .content-show {
+            opacity: 1; /* 完全不透明 */
+            display: flex; /* 当内容显示时，启用flex布局 */
+            transition: opacity 2s ease-in-out, height 2s ease-in-out; /* 添加高度变化的过渡效果 */
+        }
+        
+        .content-section > div {
+            width: 43%; /* 调整每个内容块占据的宽度，以便左右两边显示 */
+            margin-top: 60px; /* 调整内容块的底部外边距 */
+            text-align: center; /* 内容居中对齐 */
+        }
+        
+        .content-section img {
+            max-width: 100%; /* 图片最大宽度为100% */
+            height: auto; /* 高度自动调整 */
+            border-radius: 10px; /* 圆角边框 */
+        }
+        
+        .content-section h4 {
+            font-size: 25px;
+            margin: 10px;
+        }
+        .content-section p {
+            font-size: 20px;
+            line-height: 1.5;
+        }
+
+        .content-section img:hover {
+            transform: scale(1.05); /* 鼠标悬停时放大效果 */
+            transition: all 1.5s ease-in-out;
+        }
+        
+        
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px); /* 根据需要调整这个值 */
+            }
+        }
+        
+        .book img {
+            width: 100%;
+            height: auto;
+            display: block;
+            animation: float 2.5s ease-in-out infinite; /* 应用动画 */
+        }
+        
+        .book:hover img {
+            animation: none; /* 鼠标悬停时停止动画 */
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <button class="menu" onclick="ClickNav()">&#9776;</button>
+        <a href="Home.html"><h1>AI PARK</h1></a>
+            <nav class="nav-bar" id="nav-bar">
+                <ul>
+                    <li><a href="LearningList.html">學習園</a></li>
+                    <li><a href="Playground.html">遊戲場</a></li>
+                    <li><a href="References.html">參考網站</a></li>
+                    <div id="pagination"></div>
+                </ul>
+            </nav>
+    </header>
+
+
+    
+    <p style="height: 100px"></p>
+
+
+    <div id="bookshelf">
+        <div class="book" data-category="easy">
+            <img src="image/簡單.png" alt="簡單">
+        </div>
+        <div class="book" data-category="medium">
+            <img src="image/中等.png" alt="中等">
+        </div>
+        <div class="book" data-category="hard">
+            <img src="image/進階.png" alt="進階">
+        </div>
+    </div>
+    
+    <div id="contentDisplay" class="content-hide">
+
+        <!-- 简单分类的内容 -->
+        <div id="easyContent" class="content-section">
+            <div>
+                <a href="LearningWeb/Ch1.1.html">
+                    <img src="image/icon_Ch1.1.png" alt="什麼是人工智能？"></a>
+                <h4>什麼是人工智能？</h4>
+                <p>認識什麼是人工智能<br>了解人工智能的應用及限制</p>
+            </div>
+            <div>
+                <a href="LearningWeb/Ch1.2.html">
+                    <img src="image/icon_Ch1.2.png" alt="機器怎樣學習？"></a>
+                <h4>機器怎樣學習？</h4>
+                <p>了解什麼是機器學習<br>自己做一個圖像識別的人工智能！</p>
+            </div>
+        </div>
+
+
+        <!-- 中等分类的内容 -->
+        <div id="mediumContent" class="content-section">
+            <div>
+                <a href="LearningWeb/Ch2.1.html">
+                    <img src="image/icon_Ch2.1.png" alt="生成式AI"></a>
+                <h4>生成式AI</h4>
+                <p>認識什麼是生成式AI<br>體驗生成式AI！</p>
+            </div>
+    
+            <div>
+                <a href="LearningWeb/Ch2.2.html">
+                    <img src="image/icon_Ch2.2.png" alt="人臉識別及Deepfake"></a>
+                <h4>AI生成的像真影像</h4>
+                <p>認識人臉辨別的應用<br>初探Deepfake的問題</p>
+            </div>        
+        </div>
+
+
+        <!-- 进阶分类的内容 -->
+        <div id="hardContent" class="content-section">
+            <div>
+                <a href="LearningWeb/Ch3.1.html">
+                    <img src="image/icon_Ch3.1.png" alt="AI倫理原則"></a>
+                <h4>使用AI會犯法？</h4>
+                <p>了解現在的AI倫理原則<br>教你正確使用AI！</p>
+            </div>
+    
+            <div>
+                <a href="LearningWeb/Ch3.2.html">
+                    <img src="image/icon_Ch3.2.png" alt="人臉識別及Deepfake"></a>
+                <h4>我的AI模型有什麼問題？</h4>
+                <p>認識訓練數據中的問題<br>助你訓練更好的模型！</p>
+            </div>
+        </div>
+    </div>
+    
+
+<script>
+
+document.querySelectorAll('.book').forEach(book => {
+    book.addEventListener('click', function() {
+        const category = this.getAttribute('data-category');
+        showContent(category);
+
+        // 简单的翻书动画示例
+        this.style.transform = 'rotateY(180deg)';
+        setTimeout(() => {
+            this.style.transform = 'rotateY(0deg)';
+        }, 600);
+    });
+});
+
+function showContent(selectedCategory) {
+    // 获取所有内容区块
+    const contentSections = document.querySelectorAll('.content-section');
+    contentSections.forEach(section => {
+        section.style.display = 'none';
+        section.classList.remove('content-show'); // 移除展示类
+    });
+
+    const contentId = selectedCategory + "Content";
+    const contentSection = document.getElementById(contentId);
+    if (contentSection) {
+        contentSection.style.display = 'flex'; // 应用flex布局
+        contentSection.classList.add('content-show'); // 添加展示类以逐渐显示
+    }
+}
+</script>
+</body>

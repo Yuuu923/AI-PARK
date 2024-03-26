@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+    <title>AI PARK</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="image/logo_AI.ico" type="image/x-icon">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="script.js"></script>
+    <style>
+
+.Robot_Search {
+    position: absolute;
+    left: 140px;
+    bottom: 10px;
+    width: 230px; /* 调整图片大小 */
+    transform: scaleX(-1);
+    z-index: -1;
+}
+.container {
+    display: flex;
+    margin: 20px auto; /* 不贴近两侧 */
+    max-width: 80%; /* 控制最大宽度，根据需要调整 */
+}
+
+.sidebar {
+    flex: 1;
+    margin-top: 20px;
+}
+
+.sidebar ul {
+    list-style-type: none;
+}
+
+.sidebar ul li {
+    padding: 15px 20px; /* 调整左右的padding来控制不贴近两侧 */
+    cursor: pointer;
+    border-top-left-radius: 15px; /* 左上角的圆角半径为 10 像素 */
+    border-bottom-left-radius: 15px; /* 左下角的圆角半径为 10 像素 */
+    font-size: 20px;
+    transition: margin-left 0.5s ease; /* 添加过渡效果 */
+}
+
+.sidebar ul li.nav-item {
+    margin: 10px 0; /* 添加一点间距 */
+}
+
+.sidebar ul li.active {
+    margin-left: -40px; /* 向左突出 */
+}
+
+.GenerativeAI , #GenerativeAI{ background-color: #A3E4D7; }
+.MachineLearning , #MachineLearning{ background-color: #AED6F1; }
+.CNN , #CNN { background-color: #F9E79F; }
+.NLP , #NLP{ background-color: #F5B7B1; }
+
+.content {
+    flex: 3;
+}
+
+.content-item {
+    display: none;
+    padding: 20px;
+    border-radius: 20px;
+}
+
+.item-header {
+    display: flex; /* 使用flex布局 */
+    align-items: center; /* 垂直居中 */
+    margin-bottom: 20px; /* 与下面的文字描述间隔 */
+}
+
+
+.content-item img {
+    width: 50%;
+    height: auto; /* 图片的固定高度 */
+    object-fit: cover; /* 保持图片的宽高比 */
+    margin-right: 20px; /* 与按钮间隔 */
+    border-radius: 20px;
+}
+
+#chatgpt-image, #stablediffusionxl-image {
+    width: auto; /* 或指定一个具体的宽度，例如300px */
+    height: 100px; /* 指定你想要的高度 */
+    border-radius: 20px; /* 如果你想保持图片的圆角样式 */
+    margin: 0 0 0 80px;
+}
+.website-link {
+    padding: 10px 20px;
+    background-color: #3c6cbc;
+    color: white;
+    text-decoration: none;
+    font-size: 20px;
+    border-radius: 10px;
+    transition: background-color .5s;
+}
+
+.website-link:hover {
+    background-color: #073f7a;
+}
+.content-item p {
+    font-size: 20px;
+    line-height: 1.8;
+}
+
+
+
+
+
+
+
+.reference-documents{
+    max-width: 80%;
+    margin: 20px auto; /* 不贴近两侧 */
+}
+
+.reference-documents a{
+    text-decoration: none;
+}
+.reference-documents table {
+    border-collapse: collapse; /* 移除表格间的间隔 */
+}
+
+.reference-documents th, .reference-documents td {
+    border: 1px solid #ddd; /* 单元格边框 */
+    padding: 3px; /* 单元格内边距 */
+    text-align: left; /* 文本对齐方式 */
+}
+
+.reference-documents th {
+    background-color: #f2f2f2; /* 表头背景色 */
+}
+
+.reference-documents td, th, p {
+    font-size: 20px;
+    line-height: 1.5;
+}
+
+.reference-documents td:nth-child(1) {
+  width: 30%;
+}
+.reference-documents td:nth-child(2) {
+  width: 60%;
+}
+.reference-documents td:nth-child(3) {
+  width: 10%;
+}
+    </style>
+</head>
+
+    <body>
+        <header>
+            <button class="menu" onclick="ClickNav()">&#9776;</button>
+            <a href="Home.html"><h1>AI PARK</h1></a>
+                <nav class="nav-bar" id="nav-bar">
+                    <ul>
+                        <li><a href="LearningList.html">學習園</a></li>
+                        <li><a href="Playground.html">遊戲場</a></li>
+                        <li><a href="References.html">參考網站</a></li>
+                        <div id="pagination"></div>
+                    </ul>
+                </nav>
+        </header>
+
+        <img class="Robot_Search" src="image/Robot_Search.gif" alt="Robot_Search">
+        <main>            
+
+            <p style="height: 120px;"> </p>
+            <h2 style="margin-left: 150px; font-size: 30px;">參考網站</h2>
+            <div class="container">
+                <div class="sidebar">
+                    <ul>
+                        <li class="nav-item MachineLearning" data-target="MachineLearning">機器學習</li>
+                        <li class="nav-item GenerativeAI" data-target="GenerativeAI">生成式AI</li>
+                        <li class="nav-item CNN" data-target="CNN">卷積神經網絡</li>
+                        <li class="nav-item NLP" data-target="NLP">自然語言處理</li>
+                    </ul>
+                </div>
+                
+                
+                <div class="content">
+                    <div id="GenerativeAI" class="content-item">
+                        <div class="item-header">
+                            <img src="image/icon_Poe.jpeg" alt="Poe">
+                            <p><b>Poe</b><br>
+                                這是一個AI聊天機器人，它能夠與你進行對話、回答問題和提供資訊。<br>
+                                <a href="https://poe.com/ChatGPT" target="_blank" class="website-link">前往網站</a></p>
+                            </div>
+                            <p>因為ChatGPT官網未支援香港用家，所以我們使用Poe作體驗。Poe內有各種不同的模型，我們可以免費使用ChatGPT3.5生成文字及StableDiffusionXL生成圖像。<br>
+                                <img src="image/icon_ChatGPT.jpeg" alt="ChatGPT" id="chatgpt-image">（只生成文字）
+                                <img src="image/icon_StableDiffusionXL.jpeg" alt="StableDiffusionXL" id="stablediffusionxl-image">（只生成圖像）<br><br>
+                                ChatGPT是一個基於人工智能的聊天機器人，它能夠與你進行對話、回答問題和提供資訊。<br>
+                                原理方面，生成式AI使用了一種稱為GPT（Generative Pre-trained Transformer）的模型。生成式AI通過訓練模型來理解訓練數據，然後利用這些特性生成新的數據樣本。<br><br>
+                                然而，生成式AI也有一些限制。首先，它是基於訓練數據來生成回答的，所以它的回答是基於模型的預測，並不一定準確。有時候，它可能會給出不完整或不正確的答案。其次，ChatGPT並不具備真正的理解能力，它只是通過匹配模式和模型訓練來給出回答。因此，在處理複雜或具有多義性的問題時，它可能會有困難或產生混淆。</p>
+                            </div>
+                            
+                            
+                            
+                            <div id="MachineLearning" class="content-item">
+                                <div class="item-header">
+                                    <img src="image/icon_AIforOceans.png" alt="AIforOceans">
+                                    <p><b>AI for Oceans</b><br>
+                                        通過互動、卡通化的圖像了解機器學習的過程及概念。<br>
+                                        <a href="https://code.org/oceans" target="_blank" class="website-link">前往網站</a></p>
+                                </div>
+                                <p>這是教育平台旨在介紹機器學習的應用和AI的道德使用。網站會一步一步地清晰講解機器學習的每一步，用家可以通過按鈕等方法進行互動，加深認識及了解。</p><br>
+                                
+                                <div class="item-header">
+                                    <img src="image/icon_TeachableMachine.jpeg" alt="TeachableMachine">
+                                    <p><b>Teachable Machine</b><br>
+                                        無需寫任何程式碼，讓你輕鬆地創建自己的機器學習模型的網站，例如：圖像辨識、語音識別及姿勢辨別。<br>
+                                        <a href="https://teachablemachine.withgoogle.com/" target="_blank" class="website-link">前往網站</a></p>
+                                </div>
+                                <p>這是一個由Google開發的網站。通過這個網站，用家可以訓練自己的機器模型，從而深入了解人工智能技術的運作方式。<br><br>
+                                    Teachable Machine的原理是基於機器學習中的「監督式學習」。當用家提供了數據和相應的標籤（也就是告訴機器這些數據代表什麼），它能夠學習在未來遇到類似數據時如何進行分類或識別。
+                                </p>
+                            </div>
+        
+                            <div id="CNN" class="content-item">
+                                <div class="item-header">
+                                    <img src="image/icon_QuickDraw.png" alt="QuickDraw">
+                                    <p><b>Quick Draw</b><br>
+                                        玩家按題目繪出圖像，AI會實時猜測圖像是什麼。當中使用到AI的卷積神經網絡。<br>
+                                        <a href="https://quickdraw.withgoogle.com/" target="_blank"  class="website-link">前往網站</a></p>
+                                </div>
+                                <p>這是由Google開發的一款線上遊戲。人工智慧會從用家畫的每張圖中學習，並增加未來的猜測能力。<br><br>
+                                    卷積神經網絡是一種機器學習中常用於圖像處理和分類的深度學習模型。它的設計靈感來自人類視覺系統，能夠有效地處理和分析圖像數據。<br>
+                                    卷積神經網絡的由多個層組成，包括卷積層、池化層和全連接層。<br>
+                                    在卷積層中，模型使用過濾器來提取圖像的特徵，例如邊緣、紋理或形狀。<br>
+                                    池化層則用於減少特徵圖的維度，同時保留重要的特徵。<br>
+                                    最後，全連接層將提取的特徵映射到不同的類別，進行分類或識別。<br><br>
+                                    總結而言，卷積神經網絡是一種強大的深度學習模型，特別適用於圖像處理和分類任務。Quick Draw提供了一個有趣的方式來初步了解卷積神經網絡。
+                                    </p><br>
+                            </div>
+        
+        
+                            <div id="NLP" class="content-item">
+                                <div class="item-header">
+                                    <img src="image/icon_Semantris.png" alt="Semantris">
+                                    <p><b>Semantris</b><br>
+                                        這是一個文字遊戲，玩家需輸入與字詞相關的字，AI會透過NLP技術分析你輸入的字詞，詞義愈接近，分數愈高。<br>
+                                        <a href="https://research.google.com/semantris/" target="_blank" class="website-link">前往網站</a></p>
+                                </div>
+                                <p>
+                                    NLP讓電腦能夠理解和處理人類語言。其原理是基於語言結構和統計方法。它使用演算法來學習和理解語言的規則和語義。通過大量的訓練數據，NLP模型可以學會識別詞彙、理解句子的語法結構，並猜測詞語的含義。<br><br>
+                                    NLP有不同的用法，例如它可以幫助我們進行文本分析，從大量的文本中提取有用的信息；也可以用於機器翻譯，幫助我們將一種語言轉換成另一種語言。另外，智能助手和聊天機器人也是NLP的應用之一，它們可以理解我們的指令、回答我們的問題，並與我們進行對話。
+                                    </p><br>
+                            </div>
+                </div>
+            </div>
+            <br><br>
+
+
+
+            <div class="reference-documents">
+                <h2 style="font-size: 30px;">參考文件</h2>
+                <p>以下內容為補充文件，內容較為進階，有興趣了解更深奧的內容的話，可以閱讀。</p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>名稱</th>
+                            <th>描述</th>
+                            <th>適合年齡</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><a href="references/初中人工智能課程單元_1_教師版.pdf" target="_blank">初中人工智能課程單元（一）</a></td>
+                            <td>認識人工智能的基本概念，簡單講述電腦視覺、電腦語音與語言的知識，同時介紹人工智能倫理準則。</td>
+                            <td>10-15歲</td>
+                        </tr>
+                        <tr>
+                            <td><a href="references/初中人工智能課程單元_2_教師版.pdf" target="_blank">初中人工智能課程單元（二）</a></td>
+                            <td>進一步講解電腦視覺、電腦語音與語言的原理，描述機械人與人工智能的關係。</td>
+                            <td>12-15歲</td>
+                        </tr>
+                        <tr>
+                            <td><a href="references/初中人工智能課程單元_3_教師版.pdf" target="_blank">初中人工智能課程單元（三）</a></td>
+                            <td>深入描述卷積神經網絡的應用，進行機械車的編程教學，講解人工智能對社會的影響。</td>
+                            <td>15-18歲</td>
+                        </tr>
+                        <tr>
+                            <td><a href="references/CH1.pdf" target="_blank">初探機器學習 第一章：打開AI人工智慧之門</a></td>
+                            <td>描述人工智能的現況及基本概念。</td>
+                            <td>10-15歲</td>
+                        </tr>
+                        <tr>
+                            <td><a href="references/CH2.pdf" target="_blank">初探機器學習 第二章：我也能打造機器學習</a></td>
+                            <td>講述機器學習的五大流程，了解機器學習的概念。</td>
+                            <td>10-15歲</td>
+                        </tr>
+                        <tr>
+                            <td><a href="references/CH3.pdf" target="_blank">初探機器學習 第三章：動手實作監督式學習</a></td>
+                            <td>認識監督式與非監督式學習的分別，介紹機器學習中迴歸及分類的意思，並舉例示範三種演算法與模型:迴歸、KNN 與決策樹。較年幼的學生可以了解當中的概念，有能力的學生則可以嘗試實踐。</td>
+                            <td>10-15歲</td>
+                        </tr>
+                        <tr>
+                            <td><a href="references/CH4.pdf" target="_blank">初探機器學習 第四章：動手實作非監督式學習</a></td>
+                            <td>介紹非監督式學習的概念，舉例並示範K-means分群演算法。</td>
+                            <td>15-18歲</td>
+                        </tr>
+                        <tr>
+                            <td><a href="references/CH5.pdf" target="_blank">初探機器學習 第五章：國際AI競賽走一遭</a></td>
+                            <td>介紹Kaggle網站以及賽事參與的步驟。這章節介紹著名資料挖掘和預測競賽的網路平台-Kaggle，有興趣的同學可以報名參與當中的比賽，不但有機會贏得獎金，更是實現自己的機會。</td>
+                            <td>15-18歲</td>
+                        </tr>
+                        <tr>
+                            <td><a href="references/Appendix A.pdf" target="_blank">初探機器學習 附錄A：Python基礎語法查詢表</a></td>
+                            <td>列出Python的基本知識及語句，學習編程的第一步。</td>
+                            <td>10-15歲</td>
+                        </tr>
+                        <tr>
+                            <td><a href="references/Appendix B.pdf" target="_blank">初探機器學習 附錄B：Google Colab使用簡介</a></td>
+                            <td>介紹簡易的編程平台Google Colab，十分適合初學者。</td>
+                            <td>10-15歲</td>
+                        </tr>
+        
+                    </tbody>
+                </table>
+            </div>
+
+            
+        </main>
+        
+        
+        <footer>
+            <span class="footer-left">Website by Tsang Yu Tung</span>
+            <span class="footer-right">© 2024 AI PARK</span>
+        </footer>
+    
+        <script>
+            document.querySelectorAll('.sidebar ul li').forEach(item => {
+                item.addEventListener('click', function() {
+                    const targetId = this.getAttribute('data-target');
+                    document.querySelectorAll('.content-item').forEach(contentItem => {
+                        if (contentItem.id === targetId) {
+                            contentItem.style.display = 'block';
+                        } else {
+                            contentItem.style.display = 'none';
+                        }
+                    });
+                });
+            });
+            
+            // Optionally, automatically click the first item to show it on page load.
+            document.querySelector('.sidebar ul li').click();
+            
+            document.addEventListener('DOMContentLoaded', function() {
+                const navItems = document.querySelectorAll('.sidebar ul li');
+            
+                navItems.forEach(item => {
+                    item.addEventListener('click', function() {
+                        // 移除其他项目的激活状态
+                        navItems.forEach(otherItem => {
+                            otherItem.classList.remove('active');
+                        });
+            
+                        // 为点击的项目添加激活状态
+                        this.classList.add('active');
+                    });
+                });
+            });
+            </script>
+                </body>
+</html>

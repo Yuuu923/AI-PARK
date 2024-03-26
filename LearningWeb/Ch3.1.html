@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+    <title>AI PARK</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="icon" href="../image/logo_AI.ico" type="image/x-icon">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="../script.js"></script>
+    
+    <style>
+        .step {
+            display: none;
+        }
+        video {
+            width: 100%;
+        }
+        .options label {
+            display: block; /* 让每个选项单独一行 */
+            margin-bottom: 12px; /* 增加选项之间的距离 */
+            font-size: 18px; /* 放大字体 */
+            padding: 8px 12px; /* 增加内边距 */
+            border-radius: 4px; /* 轻微圆角 */
+            cursor: pointer;
+            transition: background-color 0.3s ease; /* 平滑背景色过渡 */
+            width: 60%;
+        }
+        .options label:hover {
+            background-color: #f0f0f0; /* 鼠标悬停时的背景色 */
+        }
+        .checked { background-color: #92afce; /* 选中时的颜色 */ }
+        /* 正确或错误的颜色 */
+        .correct { background-color: rgb(79, 166, 79) !important; color: white; }
+        .wrong { background-color: rgb(203, 46, 46) !important; color: white; }
+        
+        input[type="radio"] { display: none; /* 隐藏原生单选按钮 */ }
+        .options label { cursor: pointer; display: block; }
+        .options label:hover { background-color: #f0f0f0; } /* 鼠标悬停样式 */
+        button:disabled { opacity: 0.5; }
+        img { max-width: 90%; height: auto; } /* 使图片自适应容器宽度 */
+
+
+        #conclusion {
+            font-size: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <button class="menu" onclick="ClickNav()">&#9776;</button>
+        <a href="../Home.html"><h1>AI PARK</h1></a>
+            <nav class="nav-bar" id="nav-bar">
+                <ul>
+                    <li><a href="../LearningList.html">學習園</a></li>
+                    <li><a href="../Playground.html">遊戲場</a></li>
+                    <li><a href="../References.html">參考網站</a></li>
+                    <div id="pagination"></div>
+                </ul>
+            </nav>
+    </header>
+    
+    <div class="learningBar">
+        <ul>
+            <li id="progress-step1" class="active" onclick="showStep('step1')">故事介紹</li>
+            <li id="progress-step2" class="locked" onclick="showStep('step2')">知識點</li>
+            <li id="progress-step3" class="locked" onclick="showStep('step3')">小練習</li>
+            <li id="progress-step4" class="locked" onclick="showStep('step4')">總結</li>
+        </ul>
+    </div>
+
+    <p style="height: 80px;"></p>
+    <h3 class="topic">使用AI會犯法？</h3>
+    <div id="step1" class="step">
+        <video id="video1" controls>
+            <source src="../video/Ch3.1.1.mp4" type="video/mp4"></video>
+        <button id="next1" disabled>下一步</button>
+    </div>
+    
+
+    <div id="step2" class="step">
+        <!-- Embed your Canva presentation here -->   
+        <div style="position: relative; width: 100%; height: 0; padding-top: 56.2500%;padding-bottom: 0; box-shadow: 0 2px 8px 0 rgba(63,69,81,0.16); margin-top: 1.6em; margin-bottom: 0.9em; overflow: hidden;border-radius: 8px; will-change: transform;">
+         <iframe loading="lazy" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; border: none; padding: 0;margin: 0;"src="https:&#x2F;&#x2F;www.canva.com&#x2F;design&#x2F;DAF_0WzjUiY&#x2F;PklaxNomdecnnmjnLCmnuA&#x2F;view?embed" allow="fullscreen"></iframe>
+       </div>
+        <button id="next2">下一步</button>
+    </div>
+    
+    <div id="step3" class="step">
+        <div class="question" style="text-align: left;">
+            <p>請判斷以下情景違反了哪個原則？</p>
+            <div class="situation">
+                <p>1. 一位老師使用了一個人工智能來評估學生的作文。學生們發現自己的分數與平時的表現不太一致，他們對這個平台的運作機制感到困惑。</p>
+            </div>
+            <div class="options">
+                <input type="radio" id="transparency1" name="option1" value="透明度">
+                <label for="transparency1">透明度</label>
+                <input type="radio" id="fair1" name="option1" value="正義與公平">
+                <label for="fair1">正義與公平</label>
+                <input type="radio" id="privacy1" name="option1" value="私隱">
+                <label for="privacy1">私隱</label>
+                <div id="feedback1"></div>
+            </div>
+            <br>
+        </div>
+
+        <div class="question" style="text-align: left;">
+            <div class="situation">
+                <p>2. 一家銀行正在開發一個人工智能信用評分系統來評估申請人的信用風險。然而，申請人發現他們的信用評分受到了性別、種族等因素的影響，這讓他們感到不忿。</p>
+            </div>
+            <div class="options">
+                <input type="radio" id="fair2" name="option2" value="正義與公平">
+                <label for="fair2">正義與公平</label>
+                <input type="radio" id="benefit2" name="option2" value="裨益">
+                <label for="benefit2">裨益</label>
+                <input type="radio" id="responsibility2" name="option2" value="責任">
+                <label for="responsibility2">責任</label>
+                <div id="feedback2"></div>
+            </div>
+            <br>
+        </div>
+
+        <div class="question" style="text-align: left;">
+            <div class="situation">
+                <p>3. 一位軟件開發員製作了一個人工智能換臉的軟件，讓用家上傳照片到雲端以達到換臉效果。然而，軟件開發員擅自將用家的照片進行大數據訓練。</p>
+            </div>
+            <div class="options">
+                <input type="radio" id="benefit3" name="option2" value="裨益">
+                <label for="benefit3">裨益</label>
+                <input type="radio" id="privacy3" name="option3" value="私隱">
+                <label for="privacy3">私隱</label>
+                <input type="radio" id="transparency3" name="option2" value="透明度">
+                <label for="transparency3">透明度</label>
+                <div id="feedback3"></div>
+            </div>
+            <br>
+        </div>
+
+        <button id="submitBtn" disabled>提交</button>
+        <div id="scoreDisplay" style="margin-top: 20px; font-size: 20px;"></div>
+        <button id="next3" disabled>下一步</button>
+    </div>
+
+    <div id="step4" class="step">
+        <div id="conclusion">
+            <h5 style="font-size: 30px;">學習總結</h5>
+            <p>聯合國教科文組織 (UNESCO) 制定的五個人工智能倫理原則：透明度、正義與公平、裨益、責任和私隱。<br><br>
+                透明度：透明度是指AI的程式能夠向我們解釋它是如何做出決定的。就像我們需要知道為什麼老師在給我們評分時有什麼準則；我們也需要知道為什麼人工智能做出了某些決定。這樣我們才能知道它是否公正和正確。<br><br>
+                正義與公平：正義與公平意味著每個人都應該受到公平對待，不應因為種族、性別或其他原因而受到歧視。人工智能應該被設計成公平對待每個人，而不是給予某些人特殊待遇。<br><br>
+                裨益：裨益是指人工智能應該幫助我們，而不是傷害我們。它應該用來增進我們的生活品質，幫助我們解決問題，而不是創造新的問題或對我們造成傷害。<br><br>
+                責任：責任是指人工智能科技的開發和使用必須負責任。這意味著人們在開發和使用人工智能時應該誠實和謹慎，確保它們符合社會價值觀，並對我們的行為負責。<br><br>
+                私隱：私隱是指我們的個人信息應該得到保護，不應該被未經授權的人訪問或使用。在使用人工智能時，我們需要確保我們的個人信息得到妥善保護，不被濫用或泄露。<br></p>
+            <button onclick="goBack()">回到上一頁</button>
+        </div>
+    </div>
+
+
+
+    <script>
+        // 將第一個步驟（HTML 中具有 id="step1" 的元素）設置為可見。
+        document.getElementById("step1").style.display = "block";
+        var unlockedStep = 1; // 跟踪用户解锁到的步骤，一開始設置為 1，表示第一個步驟已解鎖。
+
+        // 當影片結束時，啟用下一步按鈕。
+        document.getElementById("video1").onended = function() {
+            document.getElementById("next1").disabled = false;
+        };
+
+        // 將用戶從一個步驟移動到下一個步驟。它接受兩個參數：當前步驟的 ID 和下一步驟的 ID。它會隱藏當前步驟，顯示下一步驟，同時更新進度條。
+        function nextStep(currentStep, nextStep) {
+            document.getElementById(currentStep).style.display = "none";
+            document.getElementById(nextStep).style.display = "block";
+            // 更新侧栏进度
+            document.getElementById("progress-" + currentStep).classList.remove("active");
+            document.getElementById("progress-" + nextStep).classList.add("active");
+            document.getElementById("progress-" + nextStep).classList.remove("locked");
+            unlockedStep = parseInt(nextStep.replace('step', '')); // 更新解锁的步骤
+        }
+
+        // Add event listeners to next buttons
+        document.getElementById("next1").addEventListener("click", function() {
+            nextStep("step1", "step2");
+        });
+
+        document.getElementById("next2").addEventListener("click", function() {
+            nextStep("step2", "step3");
+        });
+
+        document.getElementById("next3").addEventListener("click", function() {
+            nextStep("step3", "step4");
+        });
+
+
+    // Function to go back to the previous page
+    function goBack() {
+        window.history.back();
+    }
+
+    
+
+    // Function to show a specific step from the sidebar
+    function showStep(step) {
+    if (unlockedStep >= parseInt(step.replace('step', ''))) {
+        // Hide all steps
+        var steps = document.getElementsByClassName("step");
+        for (var i = 0; i < steps.length; i++) {
+            steps[i].style.display = "none";
+        }
+        // Show the specified step
+        document.getElementById(step).style.display = "block";
+        // Update active class in sidebar
+        var progressItems = document.querySelectorAll(".learningBar ul li");
+        progressItems.forEach(function(item) {
+            item.classList.remove("active");
+        });
+        document.getElementById("progress-" + step).classList.add("active");
+    }};
+
+    document.addEventListener('DOMContentLoaded', function() {
+            const submitBtn = document.getElementById('submitBtn');
+            const nextBtn = document.getElementById('next3');
+            const scoreDisplay = document.getElementById('scoreDisplay');
+            const questions = document.querySelectorAll('.question');
+        
+            function checkIfAllQuestionsAnswered() {
+                let allAnswered = true;
+                questions.forEach(question => {
+                    if (!question.querySelector('input[type="radio"]:checked')) {
+                        allAnswered = false;
+                    }
+                });
+                submitBtn.disabled = !allAnswered;
+            }
+        
+            questions.forEach(question => {
+                question.querySelectorAll('input[type="radio"]').forEach(input => {
+                    input.addEventListener('change', () => {
+                        checkIfAllQuestionsAnswered();
+                        question.querySelectorAll('label').forEach(label => {
+                            label.classList.remove('checked');
+                        });
+                        const label = document.querySelector(`label[for="${input.id}"]`);
+                        label.classList.add('checked');
+                    });
+                });
+            });
+        
+            submitBtn.addEventListener('click', function() {
+                let score = 0;
+                // 确保correctAnswers对象与你的问题对应
+                const correctAnswers = {
+                    'option1': { answer: '透明度', explanation: '老師沒有說明人工智能的評分標準，缺乏透明度。透明度原則要求對人工智能的運作過程進行解釋，以確保用戶了解其決策過程。' },
+                    'option2': { answer: '正義與公平', explanation: '銀行開發的人工智能信用評分系統受性別、種族等因素的影響，但這些因素或涉及歧視，違反了正義與公平原則。該原則要求人工智能應該公正地對待所有人。' },
+                    'option3': { answer: '私隱', explanation: '軟件開發員未經過用戶的明確同意就使用了他們的個人資料，違反了私隱原則。該原則要求人工智能明確說明收集和使用數據的目的，並遵守相關的隱私法律和規定。' }
+                };
+
+                
+                questions.forEach((question, index) => {
+                    const optionKey = `option${index + 1}`;
+                    const selectedOption = question.querySelector('input[type="radio"]:checked');
+                    const feedbackDivId = `feedback${index + 1}`;
+                    const feedbackDiv = document.getElementById(feedbackDivId);
+
+                    // 检查feedbackDiv是否存在
+                    if (!feedbackDiv) {
+                        console.error(`Feedback div not found for: ${feedbackDivId}`);
+                        return; // 跳过当前迭代
+                    }
+
+                    const answerData = correctAnswers[optionKey];
+
+                    if (selectedOption && selectedOption.value === answerData.answer) {
+                        score++;
+                        feedbackDiv.innerHTML = `✔ 正確。${answerData.explanation}`;
+                        feedbackDiv.style.color = 'rgb(79, 166, 79)';
+                    } else if (selectedOption) {
+                        feedbackDiv.innerHTML = `✘ 錯誤，正確答案是：${answerData.answer}。${answerData.explanation}`;
+                        feedbackDiv.style.color = 'rgb(203, 46, 46)';
+                    }
+                });
+
+
+                scoreDisplay.innerHTML = `分數：${score}/${Object.keys(correctAnswers).length}`;
+                nextBtn.disabled = false;
+            });
+
+        
+            // 初次加载页面时检查是否所有问题都被回答，以决定提交按钮是否可用
+            checkIfAllQuestionsAnswered();
+        });
+    </script>
+    
+    <footer>
+        <span class="footer-left">Website by Tsang Yu Tung</span>
+        <span class="footer-right">© 2024 AI PARK</span>
+    </footer>
+</body>

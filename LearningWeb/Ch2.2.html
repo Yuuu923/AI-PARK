@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+    <title>AI PARK</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="icon" href="../image/logo_AI.ico" type="image/x-icon">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="../script.js"></script>
+    
+    <style>
+        .step {
+            display: none;
+        }
+        video {
+            width: 100%;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px; /* 加入底邊距 */
+        }
+
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        /* 选择表格中第一列的所有单元格 */
+        th:first-child,
+        td:first-child {
+        width: 90px; /* 设置第一列的宽度为 200px */
+        }
+
+        th {
+            background-color: #b8daff; /* 設置表頭背景顏色 */
+        }
+
+        /* 可選擇行的背景色 */
+        tr:nth-child(even) {
+            background-color: #e3f1ff;
+        }
+
+        /* 鼠標懸停時行的背景色 */
+        tr:hover {
+            background-color: #fff7d3;
+        }
+
+        #conclusion {
+            font-size: 20px;
+        }
+
+    </style>
+</head>
+
+<body>
+    <header>
+        <button class="menu" onclick="ClickNav()">&#9776;</button>
+        <a href="../Home.html"><h1>AI PARK</h1></a>
+            <nav class="nav-bar" id="nav-bar">
+                <ul>
+                    <li><a href="../LearningList.html">學習園</a></li>
+                    <li><a href="../Playground.html">遊戲場</a></li>
+                    <li><a href="../References.html">參考網站</a></li>
+                    <div id="pagination"></div>
+                </ul>
+            </nav>
+    </header>
+    
+    <div class="learningBar">
+        <ul>
+            <li id="progress-step1" class="active" onclick="showStep('step1')">故事介紹</li>
+            <li id="progress-step2" class="locked" onclick="showStep('step2')">知識點</li>
+            <li id="progress-step3" class="locked" onclick="showStep('step3')">補充資料及練習</li>
+            <li id="progress-step4" class="locked" onclick="showStep('step4')">總結</li>
+        </ul>
+    </div>
+
+    <p style="height: 80px;"></p>
+    <h3 class="topic">AI生成的像真影像</h3>
+    <div id="step1" class="step">
+        <video id="video1" controls>
+            <source src="../video/Ch2.2.1.mp4" type="video/mp4"></video>
+        <button id="next1" disabled>下一步</button>
+    </div>
+    
+
+    <div id="step2" class="step">
+        <!-- Embed your Canva presentation here -->   
+        <div style="position: relative; width: 100%; height: 0; padding-top: 56.2500%;padding-bottom: 0; box-shadow: 0 2px 8px 0 rgba(63,69,81,0.16); margin-top: 1.6em; margin-bottom: 0.9em; overflow: hidden;border-radius: 8px; will-change: transform;">
+            <iframe loading="lazy" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; border: none; padding: 0;margin: 0;" src="https:&#x2F;&#x2F;www.canva.com&#x2F;design&#x2F;DAF-6tnnxyc&#x2F;G9g_6EJ6dN6pjpRb4T9_uA&#x2F;view?embed" allow="fullscreen"></iframe>
+       </div>
+        <button id="next2">下一步</button>
+    </div>
+    
+    <div id="step3" class="step">
+        <!-- Embed your H5P content here -->
+        <iframe src="https://aiparkcom.h5p.com/content/1292219183457326489/embed" aria-label="Deepfake介紹" width="1088" height="637" frameborder="0" allowfullscreen="allowfullscreen" allow="autoplay *; geolocation *; microphone *; camera *; midi *; encrypted-media *"></iframe><script src="https://aiparkcom.h5p.com/js/h5p-resizer.js" charset="UTF-8"></script>
+        <button id="next3" disabled>下一步</button>
+    </div>
+
+    <div id="step4" class="step">
+        <div id="conclusion">
+            <h5 style="font-size: 30px;">學習總結</h5>
+            <p>人臉辨識就是透過照片或影片來辨識一個人是誰。每個人的臉都有自己獨一無二的特徵,例如眼睛的大小和形狀等等。<br>
+                人臉辨識技術利用這些特徵來辨識不同人的臉。<br>
+                電腦透過電腦視覺去「看」我們的照片，通過視覺輸入的資訊理解世界。<br>
+                Deepfake是使用深度學習技術合成一個人的臉部、聲音或行為的影片或圖片，當中使用了生成對抗網絡。<br>
+                生成對抗網絡指兩個網絡彼此對抗，通過不斷競爭和學習，以生成逼真的數據，兩個網絡分為有生成網絡以及判別/鑑別網絡。<br><br>
+                Deepfake的正面應用：</p>
+            <ul>
+                <li>視覺效果和電影製作——使用替身拍攝，然後將其他人的臉部替換替身的樣子。</li>
+                <li>尋找失蹤人口——用AI進行年齡老化的預測。</li>
+                <li>商業應用——生成外型姣好的模特，以低成本拍攝廣告。</li>
+            </ul><br>
+            <p>Deepfake的潛在問題：</p>
+            <ul>
+                <li>傳播假消息——通過Deepfake技術，製造一個政要或名人在影片中說出他本人沒有說過的聲明、觀點、甚至作出惡意言行等，從而誤導他人，散播假訊息。</li>
+                <li>侵犯人權和隱私——Deepfake技術可能被濫用來侵犯個人的隱私和人權，Deepfake 影片大多未得當事人同意，而取得其人像資料，繼而替換到不當的場合，這是侵犯當事人的隱私。</li>
+            </ul><br>
+            <p>隨着Deepfake的技術發達，我們應該保持警惕、驗證來源和學習識別。</p>
+            <ul>
+                <li>保持警惕——當瀏覽網絡或社交媒體時，我們不要輕信來源不明的影片或消息，尤其是那些看起來不尋常或有爭議的內容。</li>
+                <li>驗證來源——盡可能從可信的和官方的來源獲取信息，避免點擊或分享來源不明的影片或消息。</li>
+                <li>學習識別——觀察細節， 例如人臉的異常變形、不自然的眨眼、 畫質蒙糊等。也可仔細聆聽影片中的聲音是否存在異常或不自然的聲音。</li>
+            </ul>
+            <p>如果遇到懷疑是Deepfake的虛假內容，可以立即報告給相關的平台或機構，以便及時處理和防範。同時不要轉發相關內容，以免製造謠言及傳播虛假資訊。</p>
+            <button onclick="goBack()">回到上一頁</button>
+        </div>
+    </div>
+
+
+
+    <script>
+        // 將第一個步驟（HTML 中具有 id="step1" 的元素）設置為可見。
+        document.getElementById("step1").style.display = "block";
+        var unlockedStep = 1; // 跟踪用户解锁到的步骤，一開始設置為 1，表示第一個步驟已解鎖。
+
+        // 當影片結束時，啟用下一步按鈕。
+        document.getElementById("video1").onended = function() {
+            document.getElementById("next1").disabled = false;
+        };
+
+        // 將用戶從一個步驟移動到下一個步驟。它接受兩個參數：當前步驟的 ID 和下一步驟的 ID。它會隱藏當前步驟，顯示下一步驟，同時更新進度條。
+        function nextStep(currentStep, nextStep) {
+            document.getElementById(currentStep).style.display = "none";
+            document.getElementById(nextStep).style.display = "block";
+            // 更新侧栏进度
+            document.getElementById("progress-" + currentStep).classList.remove("active");
+            document.getElementById("progress-" + nextStep).classList.add("active");
+            document.getElementById("progress-" + nextStep).classList.remove("locked");
+            unlockedStep = parseInt(nextStep.replace('step', '')); // 更新解锁的步骤
+        }
+
+        // Add event listeners to next buttons
+        document.getElementById("next1").addEventListener("click", function() {
+            nextStep("step1", "step2");
+        });
+
+        document.getElementById("next2").addEventListener("click", function() {
+            nextStep("step2", "step3");
+        });
+
+        // 當由step去到下一個step，才計時，然後button可按
+        document.getElementById("next2").addEventListener("click", function() {
+            nextStep("step2", "step3");
+            // Set a timer to enable the next button after 8 seconds
+            setTimeout(function() {
+                document.getElementById("next3").disabled = false;}, 420000);
+        });
+
+        document.getElementById("next3").addEventListener("click", function() {
+            nextStep("step3", "step4");
+        });
+
+
+    // Function to go back to the previous page
+    function goBack() {
+        window.history.back();
+    }
+
+
+    // Function to show a specific step from the sidebar
+    function showStep(step) {
+    if (unlockedStep >= parseInt(step.replace('step', ''))) {
+        // Hide all steps
+        var steps = document.getElementsByClassName("step");
+        for (var i = 0; i < steps.length; i++) {
+            steps[i].style.display = "none";
+        }
+        // Show the specified step
+        document.getElementById(step).style.display = "block";
+        // Update active class in sidebar
+        var progressItems = document.querySelectorAll(".learningBar ul li");
+        progressItems.forEach(function(item) {
+            item.classList.remove("active");
+        });
+        document.getElementById("progress-" + step).classList.add("active");
+    }};
+    </script>
+    
+    <footer>
+        <span class="footer-left">Website by Tsang Yu Tung</span>
+        <span class="footer-right">© 2024 AI PARK</span>
+    </footer>
+</body>

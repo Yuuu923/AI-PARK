@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+    <title>AI PARK</title>
+    <link href='https://fonts.googleapis.com/css?family=Bungee Shade' rel='stylesheet'>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="image/logo_AI.ico" type="image/x-icon">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="script.js"></script>
+
+<style>
+        @import url(https://fonts.googleapis.com/earlyaccess/cwtexyen.css);
+        @import url(https://fonts.googleapis.com/earlyaccess/notosanstc.css);
+
+body {
+    overflow-x: hidden;
+}
+
+header{
+    background-color:rgb(255, 255, 255);
+}
+
+nav ul{
+    font-size: 20px;
+    right:5px;
+}
+nav ul li a:hover{
+    font-size: 20px;
+}
+
+
+
+.Advantage-content{
+    display: flex;
+    background-color: rgb(153, 228, 229);
+    
+}
+
+.Advantage img{
+    width:50%;
+}
+.promote{
+    width: 50%;
+    display:flex;
+    flex-direction: column;
+    align-items:center;
+    justify-content: center;
+}
+
+.promote p{
+    margin: 25px 0;
+}
+
+
+
+.fixed-nav {
+    background-color: rgba(153, 228, 229, 0.547); /* 更改背景色以增强可见性 */
+    border-radius: 100px;
+    width: 80%; /* 控制最大宽度，根据需要调整 */
+    position: fixed;
+    top: 20px; /* 或任何你想要的距顶部的距离 */
+    left: 50%; /* 设置为50%，与transform结合使用来实现居中 */
+    transform: translateX(-50%); /* 向左移动自身宽度的50%，以实现完全居中 */
+    z-index: 1000; /* 确保导航栏位于其他内容之上 */
+}
+
+
+.welcome-section {
+    /* background-color: rgb(255, 252, 242); */
+    display: flex;
+    align-items: center; /* 垂直居中对齐 */
+    justify-content: center; /* 水平居中对齐 */
+    gap: 20px; /* 两个子容器之间的间隔 */
+    margin-bottom: 120px;
+    
+}
+
+.gif-container, .text-container {
+    animation: fadeIn 1s ease-out forwards; /* 应用渐显动画 */
+    opacity: 0; /* 开始时不可见 */
+    width: 50%;
+
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1; /* 动画结束时完全可见 */
+    }
+}
+.gif-container{
+    z-index: -1;
+}
+.gif-container img {
+
+    max-width: 500px; /* 防止GIF过大 */
+    padding-left: 100px;
+    animation: fadeIn 1s ease-out forwards;
+    opacity: 0;
+
+}
+
+.text-container h1 {
+    font-size: 80px; /* 根据需要调整文本大小 */
+    padding-bottom: 20px;
+    color: var(--color1);
+    display: inline-block;
+}
+.text-container h1 span {
+    display: inline-block; /* 让span表现得像块级元素，可以应用转换 */
+    animation: jumpingText 1.7s ease infinite, colorShift 6s linear infinite;
+}
+/* 计算不同的延迟 */
+.text-container h1 span:nth-child(1) { animation-delay: 0s; }
+.text-container h1 span:nth-child(2) { animation-delay: 0.1s; }
+.text-container h1 span:nth-child(3) { animation-delay: 0.2s; }
+.text-container h1 span:nth-child(4) { animation-delay: 0.3s; }
+.text-container h1 span:nth-child(5) { animation-delay: 0.4s; }
+.text-container h1 span:nth-child(6) { animation-delay: 0.5s; }
+.text-container h1 span:nth-child(7) { animation-delay: 0.6s; }
+.text-container h1 span:nth-child(8) { animation-delay: 0.7s; }
+.text-container h1 span:nth-child(9) { animation-delay: 0.8s; }
+.text-container h1 span:nth-child(10) { animation-delay: 0.9s; }
+@keyframes jumpingText {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-30px); } /* 可调整跳动高度 */
+}
+:root {
+    --color1: #82e2ff;
+    --color2: #7c4dff;
+    --color3: #189bff;
+}
+@keyframes colorShift {
+    0% { color: var(--color1); }
+    33% { color: var(--color2); }
+    66% { color: var(--color3); }
+    100% { color: var(--color1); }
+}
+.text-container p {
+    font-size: 30px; /* 根据需要调整文本大小 */
+    /* 可以添加更多样式来美化你的文本 */
+}
+
+.rotating-text {
+    display: inline-flex; /* 使得静态文本和动态文本可以在同一行显示 */
+    align-items: center; /* 垂直居中 */
+    font-size: 40px; /* 根据需要调整 */
+    /* font-family: "NotoSansTC", sans-serif; */
+}
+
+.words-wrapper {
+    height: 40px; /* 根据字体大小调整 */
+    position: relative; /* 相对定位，作为绝对定位的.word元素的定位基准 */
+    margin-left: 5px; /* 和静态文本之间的距离 */
+}
+
+.word {
+    position: absolute;
+    font-weight: 1000;
+    color: rgb(255, 129, 209); /* 文本颜色 */
+    font-size: 45px;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    animation: rotateWord 9s infinite;
+    white-space: nowrap; /* 避免换行 */
+}
+
+/* 动画关键帧 */
+@keyframes rotateWord {
+    0%, 20% { opacity: 0; transform: translateY(-50%); }
+    25%, 50% { opacity: 1; transform: translateY(0%); }
+    55%, 100% { opacity: 0; transform: translateY(50%); }
+}
+
+.word:nth-child(1) { animation-delay: 0s; }
+.word:nth-child(2) { animation-delay: 3s; }
+.word:nth-child(3) { animation-delay: 6s; }
+    
+.start-button {
+    margin-top: 20px;
+    display: inline-flex;
+    align-items: center;
+    background-color: #e64271; /* 按钮背景颜色 */
+    color: white; /* 文本颜色 */
+    padding: 10px 15px; /* 内边距 */
+    text-decoration: none; /* 去掉下划线 */
+    font-size: 30px; /* 字体大小 */
+    border-radius: 20px; /* 边框圆角 */
+    margin-top: 20px; /* 与上方内容的间隔 */
+    transition: background-color 0.3s; /* 背景颜色变化过渡 */
+}
+
+.start-button .fas { /* 字体图标样式 */
+    margin-left: 5px; /* 图标与文字的间隔 */
+}
+
+.start-button:hover {
+    background-color: #8641c8; /* 鼠标悬停时的背景颜色 */
+}
+
+
+
+
+.marquee {
+    max-width: 100%;
+    white-space: nowrap;
+    /* overflow: hidden; */
+    font-size: 70px;
+    font-family: "Bungee Shade";
+    font-weight: 800;
+    padding: 30px 20px;
+    color: #1773c3;
+    /* background-color: rgb(153, 228, 229); */
+    animation: scrollLeft 10s linear infinite; 
+}
+
+@keyframes scrollLeft {
+    0% { transform: translateX(0%); } 
+    50% { transform: translateX(-30%); }
+}
+
+
+
+
+.benefits-container {
+    max-width: 80%; /* 或根据需要调整 */
+    margin: auto;
+}
+.benefit-intro h3{
+    background-color: rgb(153, 228, 229) ;
+    padding: 30px auto;
+    font-size: 70px;
+}
+
+.benefit-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 40px;
+    opacity: 0; /* 开始时不可见，直到滚动到该区域 */
+    /* 移除 animation 属性 */
+}
+
+/* 添加一个新的类用于触发动画 */
+.benefit-row.animate {
+    animation: fadeInUp 1s forwards;
+}
+
+
+.benefit-row.reverse {
+    text-align: right;
+}
+
+.benefit-img, .benefit-text {
+    flex: 1;
+    padding: 40px;
+    font-size: 25px;
+    line-height: 1.5;
+}
+
+.benefit-text h3{
+    font-size: 50px;
+    color: #7c4dff;
+    font-weight: bolder;
+}
+.benefit-text img{
+    width: 80px;
+    margin: 0px 40px;
+}
+
+.benefit-img img {
+    width: 100%;
+    height: auto;
+}
+
+/* 动画效果 */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 让每个benefit-row有不同的动画延迟 */
+.benefit-row:nth-child(1) { animation-delay: 0.2s; }
+.benefit-row:nth-child(2) { animation-delay: 0.4s; }
+.benefit-row:nth-child(3) { animation-delay: 0.6s; }
+.benefit-row:nth-child(4) { animation-delay: 0.8s; }
+
+
+
+
+
+
+    
+</style>
+</head>
+
+    <body>
+        <header>
+            <!-- <button class="menu" onclick="ClickNav()">&#9776;</button> -->
+            <a href="Home.html"><h1>AI PARK</h1></a>
+                <nav class="nav-bar" id="nav-bar">
+                    <ul>
+                        <li><a href="LearningList.html">學習園</a></li>
+                        <li><a href="Playground.html">遊戲場</a></li>
+                        <li><a href="References.html">參考網站</a></li>
+                        <!-- <div id="pagination"></div> -->
+                    </ul>
+                </nav>
+        </header>
+
+        <p style="height: 130px;"> </p>
+
+        <main>
+            <div class="welcome-section">
+                <div class="gif-container">
+                    <img src="image/Welcome.gif" alt="WelcomeGIF">
+                </div>
+                <div class="text-container">
+                    <h1>
+                        <span>A</span><span>I</span><span>小</span><span>遊</span><span>戲</span><span>，</span><span>大</span><span>智</span><span>慧</span><span>！</span>
+                    </h1>
+                    <!-- <h1>AI小遊戲，大智慧！</h1> -->
+                    <div class="rotating-text">
+                        <span class="static-text">簡單學會</span>
+                        <div class="words-wrapper">
+                            <span class="word">人工智能</span>
+                            <span class="word">機器學習</span>
+                            <span class="word">道德倫理</span>
+                        </div>
+                    </div><br>
+                    <a href="LearningList.html" class="start-button">立刻開始➪</a> <!-- 目标网站替换成你想要跳转的URL -->
+                </div>
+            </div>
+    
+            <div class="marquee">
+                &nbsp;&nbsp; Let's PLAY &nbsp;&nbsp; Let's PLAY &nbsp;&nbsp; Let's PLAY &nbsp;&nbsp; Let's PLAY &nbsp;&nbsp; Let's PLAY &nbsp;&nbsp; Let's PLAY
+            </div>
+
+            <div class="benefits-container">
+                <div class="benefit-row">
+                    <div class="benefit-img"><img src="image/Advantage1.gif" alt="Advantage1"></div>
+                    <div class="benefit-text">
+                        <img src="image/LightBulb.gif" alt="LightBulb">
+                        <h3>圖像化講解</h3>
+                        <p>採用淺顯易懂的方式，例如故事、影片、流程圖等來解釋AI相關概念，使得學習過程更加輕鬆和有效。透過生動形象的圖像化講解，讓你更直觀地理解複雜的概念！</p>
+                    </div>
+                </div>
+            
+                <div class="benefit-row reverse">
+                    <div class="benefit-text">
+                        <img src="image/Fix.gif" alt="Fix">
+                        <h3>互動學習</h3>
+                        <p>多種互動式學習工具，使你的學習過程充滿趣味，激發你的興趣！同時在實際操作中應用所學知識，深化對AI概念的理解，加強了對知識的消化和記憶！</p>
+                    </div>
+                    <div class="benefit-img"><img src="image/Advantage2.gif" alt="Interactive"></div>
+                </div>
+            
+                <div class="benefit-row">
+                    <div class="benefit-img"><img src="image/Advantage3.gif" alt="LifeSample"></div>
+                    <div class="benefit-text">
+                        <img src="image/Walk.gif" alt="Walk">
+                        <h3>生活例子</h3>
+                        <p>提供實用的AI應用示例，讓你了解AI在日常生活中的應用場景。讓你學會使用AI解決現實問題，將所學知識轉化為實際應用的技能！</p>
+                    </div>
+                </div>
+            
+                <div class="benefit-row reverse">
+                    <div class="benefit-text">
+                        <img src="image/Book.gif" alt="Book">
+                        <h3>知識豐富</h3>
+                        <p>具備豐富的AI知識，課題除了人工智能的基本概念和應用，還有現在流行的生成式AI，讓你全面了解AI在現今的應用，同時幫你在未來科技社會裝備自己！</p>
+                    </div>
+                    <div class="benefit-img"><img src="image/Advantage4.gif" alt="Interactive"></div>
+                </div>
+
+        </main>
+    
+        <footer>
+            <span class="footer-left">Website by Tsang Yu Tung</span>
+            <span class="footer-right">© 2024 AI PARK</span>
+        </footer>
+
+        
+<script>
+    window.addEventListener('scroll', function() {
+    const header = document.querySelector('header'); // 直接选择 header
+    // 这里可以设定一个阈值，例如当页面向下滚动超过100px时
+    if (window.scrollY > 500) {
+        header.classList.add('fixed-nav');
+    } else {
+        header.classList.remove('fixed-nav');
+    }
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('animate');
+            }
+        });
+    }, {
+        threshold: 0.1 // 当元素至少有10%出现在视口时触发
+    });
+
+    const rows = document.querySelectorAll('.benefit-row');
+    rows.forEach(row => {
+        observer.observe(row); // 观察每个.benefit-row
+    });
+});
+
+
+
+
+
+</script>
+            
+        
+    </body>
+</html>

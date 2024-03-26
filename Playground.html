@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+    <title>AI PARK</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="image/logo_AI.ico" type="image/x-icon">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="script.js"></script>
+    <style>
+
+.PlayGif{
+    width: 300px;
+    display: block;
+    margin: 0 auto;
+}
+
+.game-container {
+    display: flex;
+    justify-content: center; /* 水平居中 */
+    align-items: center; /* 垂直居中 */
+    margin: auto; /* 自动外边距也可以实现水平居中 */
+    max-width: 70%;
+    height: 80vh;
+    transition: all 0.3s ease;
+    margin-top: -200px; /* 假设你想要它覆盖图片的一半 */
+}
+.game-container a{
+    text-decoration: none;
+}
+
+.game {
+    margin: 10px 10px 30px 10px; /* 添加上下左右边距 */
+    transition: all 0.3s ease; /* 平滑过渡动画效果 */
+    border: 1px solid rgb(153, 228, 229);
+    border-radius: 20px;
+    background-color: rgba(153, 228, 229, 0.231);
+}
+
+.game:hover {
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+    transform: translateY(-5px);
+    cursor: pointer;
+    /* border-radius: 20px; */
+}
+
+
+.game img {
+    width: 380px;  /* 想要的固定寬度 */
+    height: 270px; /* 想要的固定高度，可以調整以滿足設計需求 */
+    object-fit: cover; /* 確保圖片內容覆蓋整個元素的框架 */
+    border-radius: 20px; /* 圓角邊框 */
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); /* 阴影效果 */
+    margin: 20px; /* 如果你需要圖片之間有間距 */
+}
+
+
+.game-info {
+    margin-left: 20px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+
+}
+
+.game-info h3 {
+    color: #8233f0;
+    font-size: 30px;
+    font-weight: 800;
+    margin-bottom: 0.5em;
+}
+
+
+
+.label {
+    border-radius: 20px;
+    padding: 10px 20px;
+    font-weight: 800;
+    color: #fff;
+    margin-right: 20px;
+}
+
+.MachineLearning {
+    background-color: rgb(72, 196, 237);
+}
+
+.Ethics {
+    background-color: rgb(146, 72, 237);
+}
+
+.Concept {
+    background-color: rgb(237, 157, 72);
+}
+
+    </style>
+</head>
+
+    <body>
+        <header>
+            <button class="menu" onclick="ClickNav()">&#9776;</button>
+            <a href="Home.html"><h1>AI PARK</h1></a>
+                <nav class="nav-bar" id="nav-bar">
+                    <ul>
+                        <li><a href="LearningList.html">學習園</a></li>
+                        <li><a href="Playground.html">遊戲場</a></li>
+                        <li><a href="References.html">參考網站</a></li>
+                        <div id="pagination"></div>
+                    </ul>
+                </nav>
+        </header>
+
+        <p style="height: 100px;"> </p>
+
+        <img class="PlayGif" src="image/Robot_Play.gif" alt="PlayGif">
+
+        <main>
+            <div class="game-container">
+                <a href="GamePage/Adventure.html">
+                    <div class="game">
+                        <img src="image/Game_AIAdventure.png" alt="AIAdventure">
+                        <div class="game-info">
+                            <h3>AI機器學習大冒險</h3>
+                            <span class="label MachineLearning">機器學習</span><span class="label Concept">AI基本概念</span>
+                
+                        </div>
+                    </div>
+                </a>
+                    
+                <a href="GamePage/Memory.html">
+                <div class="game">
+                    <img src="image/Game_Memory.png" alt="MemoryGame">
+                    <div class="game-info">
+                        <h3>道德倫理記憶遊戲</h3>
+                        <span class="label Ethics">道德倫理</span>
+                    </div>
+                </div>
+                </a>
+            
+                <a href="GamePage/Fly.html">
+                <div class="game">
+                    <img src="image/Game_Fly.png" alt="FlyGame">
+                    <div class="game-info">
+                        <h3>飛箭翱翔！</h3>
+                        <span class="label Concept">AI基本概念</span>
+                    </div>
+                </div>
+                </a>
+
+            </div>
+        
+            </main>
+
+            <footer>
+                <span class="footer-left">Website by Tsang Yu Tung</span>
+                <span class="footer-right">© 2024 AI PARK</span>
+            </footer>
+        </body>
+</html>

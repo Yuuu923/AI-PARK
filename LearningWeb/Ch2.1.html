@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+    <title>AI PARK</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="icon" href="../image/logo_AI.ico" type="image/x-icon">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="../script.js"></script>
+    
+    <style>
+        .step {
+            display: none;
+        }
+        video {
+            width: 100%;
+        }
+
+        .question { display: flex; align-items: center; margin-bottom: 40px; }
+        .image { flex: 1; text-align: center; } /* 图片占据左侧 */
+        .options { flex: 1; text-align: center; } /* 选项占据右侧 */
+        /* 选中后的样式 */
+        .options label {
+            display: block; /* 让每个选项单独一行 */
+            margin-bottom: 12px; /* 增加选项之间的距离 */
+            font-size: 18px; /* 放大字体 */
+            padding: 8px 12px; /* 增加内边距 */
+            border-radius: 4px; /* 轻微圆角 */
+            cursor: pointer;
+            transition: background-color 0.3s ease; /* 平滑背景色过渡 */
+            width: 60%;
+        }
+        .options label:hover {
+            background-color: #f0f0f0; /* 鼠标悬停时的背景色 */
+        }
+        .checked { background-color: #92afce; /* 选中时的颜色 */ }
+        /* 正确或错误的颜色 */
+        .correct { background-color: rgb(79, 166, 79) !important; color: white; }
+        .wrong { background-color: rgb(203, 46, 46) !important; color: white; }
+        
+        input[type="radio"] { display: none; /* 隐藏原生单选按钮 */ }
+        .options label { cursor: pointer; display: block; }
+        .options label:hover { background-color: #f0f0f0; } /* 鼠标悬停样式 */
+        button:disabled { opacity: 0.5; }
+        img { max-width: 90%; height: auto; } /* 使图片自适应容器宽度 */
+
+
+
+
+
+        #conclusion {
+            font-size: 20px;
+        }
+
+
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px; /* 加入底邊距 */
+        }
+
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        /* 选择表格中第一列的所有单元格 */
+        th:first-child,
+        td:first-child {
+        width: 90px; /* 设置第一列的宽度为 200px */
+        }
+
+        th {
+            background-color: #b8daff; /* 設置表頭背景顏色 */
+        }
+
+        /* 可選擇行的背景色 */
+        tr:nth-child(even) {
+            background-color: #e3f1ff;
+        }
+
+        /* 鼠標懸停時行的背景色 */
+        tr:hover {
+            background-color: #fff7d3;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <button class="menu" onclick="ClickNav()">&#9776;</button>
+        <a href="../Home.html"><h1>AI PARK</h1></a>
+            <nav class="nav-bar" id="nav-bar">
+                <ul>
+                    <li><a href="../LearningList.html">學習園</a></li>
+                    <li><a href="../Playground.html">遊戲場</a></li>
+                    <li><a href="../References.html">參考網站</a></li>
+                    <div id="pagination"></div>
+                </ul>
+            </nav>
+    </header>
+    
+    <div class="learningBar">
+        <ul>
+            <li id="progress-step1" class="active" onclick="showStep('step1')">分辨小測試</li>
+            <li id="progress-step2" class="locked" onclick="showStep('step2')">知識點</li>
+            <li id="progress-step3" class="locked" onclick="showStep('step3')">補充資料</li>
+            <li id="progress-step4" class="locked" onclick="showStep('step4')">小練習</li>
+            <li id="progress-step4" class="locked" onclick="showStep('step5')">總結</li>
+        </ul>
+    </div>
+
+    <p style="height: 80px;"></p>
+    <h3 class="topic">AI也會創作嗎？</h3>
+    <div id="step1" class="step">
+        <h2 style="text-align: left;">猜猜看，這是AI生成的圖片還是真人圖片？</h2>
+        <div class="question">
+            <div class="image">
+                <img src="../image/Real1.jpeg" alt="Image1" width="500">
+            </div>
+            <div class="options">
+                <input type="radio" id="ai1" name="option1" value="AI">
+                <label for="ai1">AI</label>
+                <input type="radio" id="real1" name="option1" value="真人">
+                <label for="real1">真人</label>
+                <div id="feedback1"></div>
+            </div>
+        </div>
+        
+        <!-- 确保id和for属性的值唯一，以匹配不同的input和label -->
+        <div class="question">
+            <div class="image">
+                <img src="../image/AI1.jpeg" alt="Image2" width="500">
+            </div>
+            <div class="options">
+                <input type="radio" id="ai2" name="option2" value="AI">
+                <label for="ai2">AI</label>
+                <input type="radio" id="real2" name="option2" value="真人">
+                <label for="real2">真人</label>
+                <div id="feedback2"></div>
+            </div>
+        </div>
+        
+        <div class="question">
+            <div class="image">
+                <img src="../image/Real2.jpeg" alt="Image3" width="500">
+            </div>
+            <div class="options">
+                <input type="radio" id="ai3" name="option3" value="AI">
+                <label for="ai3">AI</label>
+                <input type="radio" id="real3" name="option3" value="真人">
+                <label for="real3">真人</label>
+                <div id="feedback3"></div>
+            </div>
+        </div>
+        
+        <div class="question">
+            <div class="image">
+                <img src="../image/Real3.jpeg" alt="Image4" width="500">
+            </div>
+            <div class="options">
+                <input type="radio" id="ai4" name="option4" value="AI">
+                <label for="ai4">AI</label>
+                <input type="radio" id="real4" name="option4" value="真人">
+                <label for="real4">真人</label>
+                <div id="feedback4"></div>
+            </div>
+        </div>
+        
+        <div class="question">
+            <div class="image">
+                <img src="../image/AI2.png" alt="Image5" width="500">
+            </div>
+            <div class="options">
+                <input type="radio" id="ai5" name="option5" value="AI">
+                <label for="ai5">AI</label>
+                <input type="radio" id="real5" name="option5" value="真人">
+                <label for="real5">真人</label>
+                <div id="feedback5"></div>
+            </div>
+        </div>
+        
+        <div class="question">
+            <div class="image">
+                <img src="../image/AI3.png" alt="Image6" width="500">
+            </div>
+            <div class="options">
+                <input type="radio" id="ai6" name="option6" value="AI">
+                <label for="ai6">AI</label>
+                <input type="radio" id="real6" name="option6" value="真人">
+                <label for="real6">真人</label>
+                <div id="feedback6"></div>
+            </div>
+        </div>
+        <button id="submitBtn" disabled>提交</button>
+        <div id="scoreDisplay" style="margin-top: 20px; font-size: 20px;"></div>
+        <button id="next1" disabled>下一步</button>
+    </div>
+    
+    
+    <div id="step2" class="step">
+        <!-- Embed your Canva presentation here -->   
+        <div style="position: relative; width: 100%; height: 0; padding-top: 56.2500%;padding-bottom: 0; box-shadow: 0 2px 8px 0 rgba(63,69,81,0.16); margin-top: 1.6em; margin-bottom: 0.9em; overflow: hidden;border-radius: 8px; will-change: transform;">
+            <iframe loading="lazy" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; border: none; padding: 0;margin: 0;"src="https:&#x2F;&#x2F;www.canva.com&#x2F;design&#x2F;DAF-tbCIRhw&#x2F;lj2kI1DJt_fa-Zji04dYDg&#x2F;view?embed" allow="fullscreen"></iframe>
+        </div>
+        <button id="next2">下一步</button>
+    </div>
+    
+    <div id="step3" class="step">
+        <video id="video1" controls>
+            <source src="../video/Ch2.1.3.mp4" type="video/mp4"></video>
+        <button id="next3" disabled>下一步</button>
+    </div>
+    
+    <div id="step4" class="step">
+        <!-- Embed your H5P content here -->
+        <iframe src="https://aiparkcom.h5p.com/content/1292217899590342509/embed" aria-label="生成式AI" width="1088" height="637" frameborder="0" allowfullscreen="allowfullscreen" allow="autoplay *; geolocation *; microphone *; camera *; midi *; encrypted-media *"></iframe><script src="https://aiparkcom.h5p.com/js/h5p-resizer.js" charset="UTF-8"></script>
+        <button id="next4" disabled>下一步</button>
+    </div>
+
+    <div id="step5" class="step">
+        <div id="conclusion">
+            <h5 style="font-size: 30px;">學習總結</h5>
+            <p>生成式AI即是由人工智能創造出來的內容。<br>
+                它通過學習和分析大量的資料，屬於機器學習的一種。<br>
+                它可以生成各種不同的內容，例如：文字、圖片、影片和音樂。<br>
+                然而，它有錯誤的回答、偏頗的回覆、不當使用和版權的潛在問題。<br>
+                參考網站：<a href="https://poe.com/ChatGPT" target="_blank">Poe (ChatGPT)</a><br>
+                我們不應該使用ChatGPT代做功課，這是違反學術誠信的行為。</p>
+
+        </div>
+        <button onclick="goBack()">回到上一頁</button>
+    </div>
+
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const submitBtn = document.getElementById('submitBtn');
+            const questions = document.querySelectorAll('.question'); // 获取所有问题
+        
+            // 为每个问题的选项添加change事件监听器
+            questions.forEach(question => {
+                question.querySelectorAll('input[type="radio"]').forEach(input => {
+                    input.addEventListener('change', checkIfAllQuestionsAnswered);
+                });
+            });
+        
+            function checkIfAllQuestionsAnswered() {
+                // 假设开始时所有问题都已回答
+                let allAnswered = true;
+                
+                // 遍历每个问题，检查是否至少有一个选项被选中
+                questions.forEach(question => {
+                    if (!question.querySelector('input[type="radio"]:checked')) {
+                        // 如果发现有问题没有选项被选中，标记为未完全回答
+                        allAnswered = false;
+                    }
+                });
+        
+                // 根据是否所有问题都被回答来启用或禁用提交按钮
+                submitBtn.disabled = !allAnswered;
+            }
+        });
+
+            document.addEventListener('DOMContentLoaded', function() {
+                const submitBtn = document.getElementById('submitBtn');
+                const nextBtn = document.getElementById('nextBtn');
+        
+                // 监听所有label的点击事件，为了改变背景色
+                document.querySelectorAll('.options label').forEach(label => {
+                    label.addEventListener('click', function() {
+                        const input = document.querySelector('#' + this.getAttribute('for'));
+                        const allInputs = this.parentNode.querySelectorAll('input[type="radio"]');
+        
+                        // 移除同一组中其他label的选中样式
+                        allInputs.forEach(inp => {
+                            if (inp !== input) {
+                                document.querySelector(`label[for="${inp.id}"]`).classList.remove('checked');
+                            }
+                        });
+        
+                        // 添加选中样式
+                        this.classList.add('checked');
+                    });
+                });
+        
+                submitBtn.addEventListener('click', function() {
+                    let allAnswered = true;
+                    let score = 0; // 初始化得分为0
+                    // 定义正确答案
+                    const correctAnswers = {
+                        'option1': '真人',
+                        'option2': 'AI',
+                        'option3': '真人',
+                        'option4': '真人',
+                        'option5': 'AI',
+                        'option6': 'AI',
+                    };
+        
+                    Object.keys(correctAnswers).forEach(question => {
+                        const selectedOption = document.querySelector(`input[name="${question}"]:checked`);
+                        const associatedLabel = document.querySelector(`label[for="${selectedOption.id}"]`);
+                        const feedbackDiv = document.getElementById(`feedback${question.slice(-1)}`);
+                        // 省略部分代码...
+        
+                        if (selectedOption.value === correctAnswers[question]) {
+                            score++; // 正确答案，得分加1
+                            associatedLabel.classList.add('correct');
+                            feedbackDiv.innerHTML = '✔ 正確';
+                            feedbackDiv.style.color = 'rgb(79, 166, 79)';
+                        } else {
+                            associatedLabel.classList.add('wrong');
+                            feedbackDiv.innerHTML = `✘ 錯誤，正確答案是：${correctAnswers[question]}`;
+                            feedbackDiv.style.color = 'rgb(203, 46, 46)';
+                        }
+                    });
+        
+        
+                    if (allAnswered) {
+                        // 如果所有问题都已回答，显示得分
+                        document.getElementById('scoreDisplay').innerHTML = `分數：${score}/6`;}
+                        document.getElementById("next1").disabled = !allAnswered;});
+            });
+        
+        // 將第一個步驟（HTML 中具有 id="step1" 的元素）設置為可見。
+        document.getElementById("step1").style.display = "block";
+        var unlockedStep = 1; // 跟踪用户解锁到的步骤，一開始設置為 1，表示第一個步驟已解鎖。
+        
+        
+        // 將用戶從一個步驟移動到下一個步驟。它接受兩個參數：當前步驟的 ID 和下一步驟的 ID。它會隱藏當前步驟，顯示下一步驟，同時更新進度條。
+        function nextStep(currentStep, nextStep) {
+            document.getElementById(currentStep).style.display = "none";
+            document.getElementById(nextStep).style.display = "block";
+            // 更新侧栏进度
+            document.getElementById("progress-" + currentStep).classList.remove("active");
+            document.getElementById("progress-" + nextStep).classList.add("active");
+            document.getElementById("progress-" + nextStep).classList.remove("locked");
+            unlockedStep = parseInt(nextStep.replace('step', '')); // 更新解锁的步骤
+        }
+        
+        // Add event listeners to next buttons
+        document.getElementById("next1").addEventListener("click", function() {
+            nextStep("step1", "step2");
+        });
+        
+        document.getElementById("next2").addEventListener("click", function() {
+            nextStep("step2", "step3");
+        });
+        
+        // // 當影片結束時，啟用下一步按鈕。
+        document.getElementById("video1").onended = function() {
+            document.getElementById("next3").disabled = false;
+        };
+
+        document.getElementById("next3").addEventListener("click", function() {
+            nextStep("step3", "step4");
+        });
+        
+        // 當由step去到下一個step，才計時，然後button可按
+        document.getElementById("next3").addEventListener("click", function() {
+            nextStep("step3", "step4");
+            // Set a timer to enable the next button after 8 seconds
+            setTimeout(function() {
+                document.getElementById("next4").disabled = false;}, 15000);
+        });
+
+        document.getElementById("next4").addEventListener("click", function() {
+            nextStep("step4", "step5");
+        });
+
+    // Function to go back to the previous page
+    function goBack() {
+        window.history.back();
+    }
+
+
+    // Function to show a specific step from the sidebar
+    function showStep(step) {
+    if (unlockedStep >= parseInt(step.replace('step', ''))) {
+        // Hide all steps
+        var steps = document.getElementsByClassName("step");
+        for (var i = 0; i < steps.length; i++) {
+            steps[i].style.display = "none";
+        }
+        // Show the specified step
+        document.getElementById(step).style.display = "block";
+        // Update active class in sidebar
+        var progressItems = document.querySelectorAll(".learningBar ul li");
+        progressItems.forEach(function(item) {
+            item.classList.remove("active");
+        });
+        document.getElementById("progress-" + step).classList.add("active");
+    }};
+    </script>
+    
+
+    <footer>
+        <span class="footer-left">Website by Tsang Yu Tung</span>
+        <span class="footer-right">© 2024 AI PARK</span>
+    </footer>
+</body>

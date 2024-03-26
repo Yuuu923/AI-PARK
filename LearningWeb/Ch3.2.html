@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+    <title>AI PARK</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="icon" href="../image/logo_AI.ico" type="image/x-icon">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="../script.js"></script>
+    
+    <style>
+        .step {
+            display: none;
+        }
+        video {
+            width: 100%;
+        }
+
+        #conclusion p {
+            font-size: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px; /* 加入底邊距 */
+        }
+
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        /* 选择表格中第一列的所有单元格 */
+        th:first-child,
+        td:first-child {
+        width: 90px; /* 设置第一列的宽度为 200px */
+        }
+
+        th {
+            background-color: #b8daff; /* 設置表頭背景顏色 */
+        }
+
+        /* 可選擇行的背景色 */
+        tr:nth-child(even) {
+            background-color: #e3f1ff;
+        }
+
+        /* 鼠標懸停時行的背景色 */
+        tr:hover {
+            background-color: #fff7d3;
+        }
+        
+    </style>
+</head>
+
+<body>
+    <header>
+        <button class="menu" onclick="ClickNav()">&#9776;</button>
+        <a href="../Home.html"><h1>AI PARK</h1></a>
+            <nav class="nav-bar" id="nav-bar">
+                <ul>
+                    <li><a href="../LearningList.html">學習園</a></li>
+                    <li><a href="../Playground.html">遊戲場</a></li>
+                    <li><a href="../References.html">參考網站</a></li>
+                    <div id="pagination"></div>
+                </ul>
+            </nav>
+    </header>
+    
+    <div class="learningBar">
+        <ul>
+            <li id="progress-step1" class="active" onclick="showStep('step1')">故事介紹</li>
+            <li id="progress-step2" class="locked" onclick="showStep('step2')">知識點</li>
+            <li id="progress-step3" class="locked" onclick="showStep('step3')">小練習</li>
+            <li id="progress-step4" class="locked" onclick="showStep('step4')">總結</li>
+        </ul>
+    </div>
+
+    <p style="height: 80px;"></p>
+    <h3 class="topic">我的AI模型有什麼問題？</h3>
+    <div id="step1" class="step">
+        <video id="video1" controls>
+            <source src="../video/Ch3.2.1.mp4" type="video/mp4"></video>
+        <button id="next1" disabled>下一步</button>
+    </div>
+    
+
+    <div id="step2" class="step">
+        <!-- Embed your Canva presentation here -->   
+        <div style="position: relative; width: 100%; height: 0; padding-top: 56.2500%;padding-bottom: 0; box-shadow: 0 2px 8px 0 rgba(63,69,81,0.16); margin-top: 1.6em; margin-bottom: 0.9em; overflow: hidden;border-radius: 8px; will-change: transform;">
+            <iframe loading="lazy" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; border: none; padding: 0;margin: 0;" src="https:&#x2F;&#x2F;www.canva.com&#x2F;design&#x2F;DAGACS7skww&#x2F;B89uuPWVFkQ8XaE1svlYyg&#x2F;view?embed" allow="fullscreen"></iframe></div>
+        <button id="next2">下一步</button>
+    </div>
+    
+    <div id="step3" class="step">
+        <!-- Embed your H5P content here -->
+        <iframe src="https://aiparkcom.h5p.com/content/1292223789907887059/embed" aria-label="練習題" width="1088" height="637" frameborder="0" allowfullscreen="allowfullscreen" allow="autoplay *; geolocation *; microphone *; camera *; midi *; encrypted-media *"></iframe><script src="https://aiparkcom.h5p.com/js/h5p-resizer.js" charset="UTF-8"></script>
+        <button id="next3" disabled>下一步</button>
+    </div>
+
+    <div id="step4" class="step">
+        <div id="conclusion">
+            <h5 style="font-size: 30px;">學習總結</h5>
+            <p>在機器學習中，模型需從數據中學習，訓練數據因而對於模型的質素很重要。訓練數據有多個因素，都會對模型產生影響。<br><br>
+                影響因素一：數據集太少<br>
+                結果：以少量數據集訓練的模型，產生了錯誤的輸出，測試表現較欠佳。<br>
+                原因：該模型在少量數據中，可能無法了解一般情況下貓或狗是怎麼樣子，以及它們在一般情況下有甚麼分別。<br><br>
+                影響因素二：數據集有雜訊<br>
+                結果：訓練數據集含有雜訊，即是數據集有目標之外的資料，模型可能仍可以生成正確的輸出，但模型的整體表現則會下降。<br>
+                原因：使用含有雜訊的數據集來訓練的模型，與辨別貓狗的任務毫無關係。<br><br>
+                影響因素三：數據集不均稱<br>
+                結果：以不均稱訓練數據集訓練出來的模型，測試的表現欠佳。<br>
+                原因：以不均稱的數據集來訓練，使訓練中佔多數的類別獲得更多注意力，導致測試的表現欠佳。<br><br>
+                影響因素四：數據集太單一<br>
+                結果：模型過擬合，無法識別其他情況的資料，表現欠佳。<br>
+                原因：當數據集太單一，模型可能會過擬合，即過度訓練數據中的特定特徵，但無法應用到新的情況上，而致模型面對與訓練數據不同的情況時，其性能可能會下降。<br><br>
+                一個訓練完善的人工智能模型，需要大量、均衡、多樣性的數據，以及準確的標記 (即少雜訊)，使訓練數據能涵蓋多種不同變化。訓練數據的質素會影響人工智能模型的表現。
+                </p>
+            <button onclick="goBack()">回到上一頁</button>
+        </div>
+    </div>
+
+
+
+    <script>
+        // 將第一個步驟（HTML 中具有 id="step1" 的元素）設置為可見。
+        document.getElementById("step1").style.display = "block";
+        var unlockedStep = 1; // 跟踪用户解锁到的步骤，一開始設置為 1，表示第一個步驟已解鎖。
+
+        // 當影片結束時，啟用下一步按鈕。
+        document.getElementById("video1").onended = function() {
+            document.getElementById("next1").disabled = false;
+        };
+
+        // 將用戶從一個步驟移動到下一個步驟。它接受兩個參數：當前步驟的 ID 和下一步驟的 ID。它會隱藏當前步驟，顯示下一步驟，同時更新進度條。
+        function nextStep(currentStep, nextStep) {
+            document.getElementById(currentStep).style.display = "none";
+            document.getElementById(nextStep).style.display = "block";
+            // 更新侧栏进度
+            document.getElementById("progress-" + currentStep).classList.remove("active");
+            document.getElementById("progress-" + nextStep).classList.add("active");
+            document.getElementById("progress-" + nextStep).classList.remove("locked");
+            unlockedStep = parseInt(nextStep.replace('step', '')); // 更新解锁的步骤
+        }
+
+        // Add event listeners to next buttons
+        document.getElementById("next1").addEventListener("click", function() {
+            nextStep("step1", "step2");
+        });
+
+        document.getElementById("next2").addEventListener("click", function() {
+            nextStep("step2", "step3");
+        });
+
+        // 當由step去到下一個step，才計時，然後button可按
+        document.getElementById("next2").addEventListener("click", function() {
+            nextStep("step2", "step3");
+            // Set a timer to enable the next button after 8 seconds
+            setTimeout(function() {
+                document.getElementById("next3").disabled = false;}, 30000);
+        });
+
+        document.getElementById("next3").addEventListener("click", function() {
+            nextStep("step3", "step4");
+        });
+
+
+    // Function to go back to the previous page
+    function goBack() {
+        window.history.back();
+    }
+
+
+    // Function to show a specific step from the sidebar
+    function showStep(step) {
+    if (unlockedStep >= parseInt(step.replace('step', ''))) {
+        // Hide all steps
+        var steps = document.getElementsByClassName("step");
+        for (var i = 0; i < steps.length; i++) {
+            steps[i].style.display = "none";
+        }
+        // Show the specified step
+        document.getElementById(step).style.display = "block";
+        // Update active class in sidebar
+        var progressItems = document.querySelectorAll(".learningBar ul li");
+        progressItems.forEach(function(item) {
+            item.classList.remove("active");
+        });
+        document.getElementById("progress-" + step).classList.add("active");
+    }};
+    </script>
+    
+    <footer>
+        <span class="footer-left">Website by Tsang Yu Tung</span>
+        <span class="footer-right">© 2024 AI PARK</span>
+    </footer>
+</body>
