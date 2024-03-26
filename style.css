@@ -1,6 +1,13 @@
 /* 都OK */
 /* @import url(https://fonts.googleapis.com/earlyaccess/cwtexkai.css);
 body {font-family: "cwTeXKai", serif;} */
+
+@import url(https://fonts.googleapis.com/earlyaccess/notosanstc.css);
+
+/* 圓體都OK */
+@import url(https://fonts.googleapis.com/earlyaccess/cwtexyen.css);
+
+
 .trail {
     position: absolute;
     height: 15px;
@@ -11,15 +18,9 @@ body {font-family: "cwTeXKai", serif;} */
     transition: opacity 0.5s ease-out; /* 平滑消失效果 */
 }
 
-@import url(https://fonts.googleapis.com/earlyaccess/notosanstc.css);
 
-/* 圓體都OK */
-@import url(https://fonts.googleapis.com/earlyaccess/cwtexyen.css);
 body {
     font-family: "cwTeXYen", sans-serif;}
-
-
-
 
 
     /* All page，導航列 */
