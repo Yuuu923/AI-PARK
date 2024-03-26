@@ -1,0 +1,712 @@
+/* 都OK */
+/* @import url(https://fonts.googleapis.com/earlyaccess/cwtexkai.css);
+body {font-family: "cwTeXKai", serif;} */
+.trail {
+    position: absolute;
+    height: 15px;
+    width: 15px;
+    border-radius: 60px;
+    background: rgba(0, 195, 255, 0.655);
+    pointer-events: none; /* 确保不会影响点击事件 */
+    transition: opacity 0.5s ease-out; /* 平滑消失效果 */
+}
+
+@import url(https://fonts.googleapis.com/earlyaccess/notosanstc.css);
+
+/* 圓體都OK */
+@import url(https://fonts.googleapis.com/earlyaccess/cwtexyen.css);
+body {
+    font-family: "cwTeXYen", sans-serif;}
+
+
+
+
+
+    /* All page，導航列 */
+*{
+    padding: 0;
+    margin:0;}
+
+header{
+    background-color:rgb(153, 228, 229);
+    height:80px;
+    width:100%;
+    position: fixed;
+}
+
+header h1{
+    position:absolute;
+    left: 50px;
+    line-height: 80px;
+    background-image:url(/Users/yuuu0789/Desktop/python/HTML/image/logo_AIPARK.png) ;
+    background-color: transparent;
+    background-size: auto 80px;
+    background-repeat:no-repeat ;
+    background-position:center;
+    width: 210px;
+    text-indent: -999999px;
+}
+
+nav a {
+    color:rgb(26, 25, 104);
+    text-decoration: none;
+}
+
+nav ul{
+    position: absolute;
+    font-size: 25px;
+    right:5px;
+    top:25px;
+    line-height: 140 px;
+}
+nav li{
+    display: inline;
+    margin-right: 10vw;
+}
+
+nav ul li a:hover{
+    border-radius: 30px;
+    font-size: 25px;
+    background-color: #fdf6e0;
+    padding: 10px 20px;
+    transition: .5s;
+}
+
+
+
+footer {
+    display: flex;
+    justify-content: space-between; /* 将内容分散到两边 */
+    padding: 50px 20vw;
+    background-color: rgb(37 84 103);
+    color: rgb(120 155 159);
+    font-size: 15px;
+}
+
+footer p {
+    margin: 0; /* 移除默认的外边距 */
+}
+
+
+
+.menu {
+    display:none
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/* Playground Page */
+.playgroundBlock {
+    height: 250px;
+    font-size: 30px;
+    text-align: center;
+    display:flex;
+    flex-direction: column;
+    align-items:center;
+    justify-content: center;
+}
+
+.playgroundBlock h2{
+    padding-top: 150px;
+    font-size: 35px;
+}
+
+.playgroundList {
+    height: 600px;
+    display:flex;
+    background-color: #4f98c2;
+    flex-direction: column;
+    align-items:center;
+    justify-content: center;
+}
+
+.playgroundList h3 {
+    font-size: 40px;
+    margin: 50px;
+    text-align: center;
+    color: #fff8bf;
+    padding: 50px;
+    border: 2px solid #fdf6e0;
+    border-radius: 60px;
+}
+
+.playgroundList a {
+    text-decoration: none;
+}
+
+.playgroundList h3:hover {
+    color: rgb(37, 5, 154);
+    font-size: 45px;
+    background-color: #fdf6e0;
+    transition: .5s;
+}
+
+
+
+
+
+
+
+
+
+
+/* Learning Page */
+.IntroML{
+    background-color: rgb(255, 255, 255);
+    height: 650px;
+    display:flex;
+    flex-direction: column;
+    align-items:center;
+    justify-content: center;
+}
+
+.IntroML h3{
+    font-size: 40px;
+    color: white;
+    background-color: #4f98c2;
+    padding:10px 40px 10px 40px;
+    border-radius: 50px;
+}
+.IntroML p{
+    font-size: 24px;
+    text-align: center;
+    line-height: 3;
+}
+
+.exampleML{
+    background-image: url(image/LearningBackground.png) ;
+    height: 900px; 
+    background-size: 100% 100%;
+}
+.exampleML h4{
+    font-size: 36px;
+    color: #9e1384;
+    padding: 40px 0 0 0;
+    border-radius: 20px;
+    display:flex;
+    flex-direction: column;
+    align-items:center;
+    justify-content: center;
+    text-shadow: 2px 2px 0px white, -2px -2px 0 white,2px -2px 0px white, -2px 2px 0 white; 
+}
+.exampleML p{
+    font-size: 24px;
+    color: #000000;
+    padding:40px;
+    background-color: #ffffffbb;
+    margin: 30px;
+    border-radius: 30px;
+    line-height: 2;
+}
+
+
+
+
+
+
+
+/* Learning Websites */
+.step {
+    text-align: right;
+    padding: 100px 250px 50px 450px; /* 根据需要调整内边距 */
+}
+
+.topic{
+    position: fixed;
+    top: 80px;
+    left: 200px;
+    font-size: 20px;
+    /* text-align: center; */
+    padding: 20px;
+}
+
+.step button {
+    padding: 5px 20px;
+    align-self: flex-end; /* 设置按钮靠右对齐 */
+    margin-top: 20px; /* 设置按钮与上方内容的间距 */
+    border-radius: 10px;
+    border: transparent;
+    font-size: 20px;
+    background-color: #ebab36;
+    color: #ffffff;
+    cursor: pointer; /* 改变鼠标指针的形状为手指形状 */
+    transition: background-color 0.3s; /* 添加过渡效果 */
+}
+
+/* 当鼠标悬停在按钮上时改变按钮的背景颜色 */
+.step button:hover {
+    background-color: #ebd036;
+}
+
+/* 当按钮被禁用时改变按钮的样式 */
+.step button:disabled {
+    background-color: #969696;
+    color:#2d2d2d;
+    cursor: not-allowed; /* 改变鼠标指针的形状为禁止符号 */
+}
+
+.learningBar {
+    position: fixed;
+    top: 80px;
+    left: 0;
+    width: 150px;
+    height: 100%;
+    background-color: #f4f4f4;
+    padding: 20px;
+    box-shadow: -2px 0 5px rgba(0,0,0,0.1);
+}
+.learningBar ul {
+    list-style: none;
+}
+.learningBar ul li {
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #ebebeb;
+    border-radius: 10px;
+    cursor: pointer;
+}
+/* 高亮显示当前步骤 */
+.learningBar ul li.active {
+    background-color: #ebab36;
+    color: white;
+}
+
+/* 锁定的步骤 */
+.learningBar ul li.locked {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+#conclusion {
+    text-align: left;
+    line-height: 2;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/* Quiz Page */
+.gameBackground {
+    background-color: rgb(47, 104, 154);
+}
+
+.contentBlock{
+    height:140px;
+}
+
+.panel {
+    background-color: white;
+    margin:5vh 5vw 5vh 5vw;
+    height: 60vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 30px;
+}
+
+.panel h1{
+    padding: 2%;
+    font-size: 3vw;
+}
+
+.panel p{
+    padding: 2%;
+    padding: 1px;
+    font-size: 2vw;
+}
+
+.question {
+    font-size: 20px;
+    padding: 20px;
+    /* top: -30px; */
+    /* margin: 2vh 3vw 2vh 3vw; */
+    /* background-color:white; */
+    /* margin-bottom: 20px; */
+}
+
+#startButton {
+    font-size: 5vh;
+    padding: 10px 40px;
+    background-color: #eeaf67;
+    border-radius: 100px;
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+#startButton:hover {
+    background-color: #8452e0;
+    font-size: 6vh;
+    transition: .3s;
+}
+
+#nextButton {
+    font-size: 2vh;
+    padding: 10px 40px;
+    background-color: #eeaf67;
+    border-radius: 100px;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+#nextButton:hover {
+    background-color: #8452e0;
+    font-size: 2vh;
+    transition: .3s;
+}
+
+#quiz-container{
+    display: none;
+}
+
+input[type="radio"] {
+    display: none;
+}
+
+/* 自定義樣式的外觀 */
+input[type="radio"] + label {
+    display: block;
+    padding: 15px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 18px;
+    cursor: pointer;
+    border: 2px solid #3498db;
+    color: #3498db;
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* radio 按鈕被選中時修改樣式 */
+input[type="radio"]:checked + label {
+    background-color: #3498db;
+    color: #fff;
+}
+
+/* 按鈕樣式 */
+#nextButton {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+/* 按鈕 hover 樣式 */
+#nextButton:hover {
+    background-color: #2582af;
+}
+ 
+#result h3{
+    text-align: center;
+    font-size: 30px;
+    padding: 0 0 20px;
+    color: #ebab36;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Drag and Drop Page */
+.titleGame p{
+    font-size:3vh;
+    padding-bottom: 1vw;
+    text-align: center;
+}
+.sortable-list .item {
+list-style: none;
+width: 70vw;
+display: flex;
+cursor: move;
+background: #ffffff;
+align-items: center;
+border-radius: 10px;
+padding: 10px 13px;
+margin-bottom: 11px;
+border: 1px solid #ccc;
+justify-content: space-between;
+}
+
+.item .details {
+display: flex;
+align-items: center;
+}
+
+.item .details span {
+font-size: 2vw;
+}
+.item i {
+color: #474747;
+font-size: 1.13rem;
+}
+.item.dragging {
+opacity: 0.3;
+}
+.item.dragging :where(.details, i) {
+opacity: 0;
+}
+#submitButton{
+    font-size: 3vh;
+    padding: 10px 40px;
+    background-color: #15c19f;
+    border-radius: 100px;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+#submitButton:hover {
+    background-color: #8452e0;
+    font-size: 3vh;
+    transition: .3s;
+}
+#gameResult h3{
+    text-align: center;
+    font-size: 30px;
+    padding: 0 0 20px;
+    color: #ebab36;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* responsive design */
+@media screen and (max-width: 900px){
+    
+    /* HomePage */
+    header{
+        height:80px;
+        z-index: 10;
+    }
+
+    nav ul{
+        height: 300px;
+        position: absolute;
+        top: 80px;
+        width: 100vw;
+        /* opacity: 0; */
+        /* overflow: hidden; */
+        background: rgb(153, 228, 229);
+    }
+
+    nav li{
+        display: block;
+        line-height: 3;
+        text-align: center;
+        margin-left: 20px;
+        padding: 20px;
+    }
+
+    nav ul li a:hover{
+        border-radius: 10px;
+        color:rgb(37, 5, 154);
+        font-size: 22px;
+        background-color: #fdf6e0;
+        padding: 10px 40px 10px 40px;
+        transition: .2s;
+    }
+
+
+    header h1{
+        left:50%;
+        position:absolute;
+        transform: translateX(-50%);
+        background-image:url(image/logo_AIPARK.png) ;
+        background-color: transparent;
+        background-size: auto 85px ;
+        background-repeat:no-repeat ;
+        background-position:top center;
+    }
+    .slogan{
+        height: 400px;
+    }
+    .slogan h2{
+        font-size: 40px;
+        margin: 25px 0;
+    }
+    .intro{
+        flex-direction: column;
+    }
+    .intro img{
+        width:100%;
+    }
+    .promote{
+        width:100%;
+        padding: 40px 0;
+    }
+
+
+
+
+
+
+
+
+
+
+    /* Quiz Page */
+    .contentBlock{
+        height:80px;
+    }
+
+    .panel {
+        margin:5vh 5vw 5vh 5vw;
+    }
+
+    .panel h1{
+        padding: 2%;
+        font-size: 7vw;
+    }
+    
+    .panel p{
+        padding: 2%;
+        padding: 1px;
+        font-size: 5vw;
+    }
+
+
+
+
+
+
+    /* Learning Page */
+    .IntroML{
+        height: 400px;
+    }
+
+    .IntroML h3{
+        font-size: 3vh;
+    }
+    .IntroML p{
+        font-size: 2vh;
+    }
+
+    .exampleML{
+        height: 900px; 
+        background-size:auto;
+    }
+    .exampleML h4{
+        font-size: 3vh;
+    }
+    .exampleML p{
+        font-size: 3vh;
+        padding:20px;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+    /* ReferencePage */
+    .referenceList h2 {
+        font-size: 4vw;
+        text-align: center;
+        line-height: 300px; /* 设置行高以使垂直居中生效 */
+        height: 200px; /* 设置容器高度以使垂直居中生效 */
+    }
+    .item p{
+        font-size: 14px;
+        padding: 0%;
+    }
+    .item h3{
+        border-bottom: 3px solid white;
+        text-shadow: 3px 2px 0px #ffffff
+    }
+
+
+
+
+    /* menu */  
+    .menu{
+    display:flex;
+    position: absolute;
+    background-color: transparent;
+    color: rgb(45, 118, 155);
+    font-size: 40px;
+    top:15px;
+    left:25px;
+    border:none;
+    cursor: pointer;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /* footer */
+    footer{
+        height: 60px;
+        font-size: 13px;
+        color: rgb(20, 11, 78);
+    }
+}
